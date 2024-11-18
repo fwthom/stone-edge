@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_18_150109) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_18_152804) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.string "status"
+    t.date "start_date"
+    t.date "end_date"
+    t.decimal "price"
+    t.bigint "stone_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stone_id"], name: "index_bookings_on_stone_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "properties"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stones", force: :cascade do |t|
+    t.string "name"
+    t.text "backstory"
+    t.decimal "daily_price"
+    t.string "personnality_traits"
+    t.string "condition"
+    t.string "size"
+    t.string "image_url"
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_stones_on_category_id"
+    t.index ["user_id"], name: "index_stones_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +62,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_18_150109) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "stones"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "stones", "categories"
+  add_foreign_key "stones", "users"
 end
