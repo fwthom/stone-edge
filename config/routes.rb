@@ -9,6 +9,17 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  # 
+
+  # MVC BOOKINGS JEAN 
+  resources :users do 
+    resources :bookings, only: [:index, :show, :edit, :update, :destroy]
+  end
+
+  resources :stones do
+    resources :bookings, only: [:new, :create, :show]
+  end
+  # END MVC BOOKINGS JEAN
+
+
   
 end

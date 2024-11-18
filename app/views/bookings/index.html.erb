@@ -1,0 +1,11 @@
+<h1>Bookings#index</h1>
+<p>Find me in app/views/bookings/index.html.erb</p>
+<% @bookings.each do |booking| %>
+<p>___________________________</p>
+<%= booking.stone.name %>
+<%= booking.start_date %>
+<%= booking.end_date %>
+<%= booking.price %>
+
+<% end %>
+<p>___________________________</p>
