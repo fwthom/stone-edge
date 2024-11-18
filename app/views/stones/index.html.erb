@@ -1,0 +1,8 @@
+<h1>Toutes ces pierres sont dispo : </h1>
+
+<div class="card">
+  <% @stones.each do |stone| %>
+  <h1><%= stone.name %></h1>
+  <%= image_tag stone.image_url %>
+  <% end %>
+</div>
