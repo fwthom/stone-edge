@@ -5,7 +5,9 @@
     <% @stones.each do |stone| %>
       <div class="card border-2">
         <h1><%= link_to stone.name, stone_path(stone) %></h1>
-        <%= image_tag stone.image_url, style: "width: 200px;" %>
+        <% if stone.photo.attached? %>
+          <%= cl_image_tag stone.photo.key, style: "width: 200px;" %>
+        <% end %>
         <p><%= stone.backstory %></p>
         <p><%= stone.personnality_traits %></p>
         <p><%= stone.condition %></p>

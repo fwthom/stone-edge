@@ -1,0 +1,80 @@
+<div class="mt-5">
+<h1>Mes Amies</h1>
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <% @stones.each do |stone| %>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-img-wrapper">
+            <% if stone.photo.attached? %>
+              <%= image_tag stone.photo, class: "card-img-top" %>
+            <% else %>
+              <%= image_tag "https://thumbs.dreamstime.com/b/la-pile-de-deux-pierres-zen-les-cailloux-gris-m%C3%A9ditation-dominent-108897267.jpg", class: "card-img-top", alt: "Image par défaut" %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= stone.name %></h5>
+            <p class="backstory"><%= stone.backstory %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div class="mt-5">
+<h1>Mes emprunts</h1>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <% @stones.each do |stone| %>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-img-wrapper">
+            <% if stone.photo.attached? %>
+              <%= image_tag stone.photo, class: "card-img-top" %>
+            <% else %>
+              <%= image_tag "https://thumbs.dreamstime.com/b/la-pile-de-deux-pierres-zen-les-cailloux-gris-m%C3%A9ditation-dominent-108897267.jpg", class: "card-img-top", alt: "Image par défaut" %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= stone.name %></h5>
+            <p class="backstory"><%= stone.backstory %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+
+
+<style>
+  .card-img-wrapper {
+    height: 200px; /* Fixe une hauteur uniforme pour toutes les images */
+    overflow: hidden; /* Coupe les parties débordantes des images */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa; /* Optionnel : couleur de fond pour les cartes sans image */
+  }
+
+  .card-img-top {
+    max-height: 100%; /* Limite la hauteur à l’intérieur du conteneur */
+    max-width: 100%; /* Limite la largeur à l’intérieur du conteneur */
+    object-fit: cover; /* Maintient un recadrage propre */
+  }
+  .card-title{
+    color:black;
+  }
+  .backstory{
+    color:black;
+    font-size: 16px;
+  }
+  body {
+    background-color:white;
+    color: black;
+  }
+</style>

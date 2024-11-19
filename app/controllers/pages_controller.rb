@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :home
   def home
     @dynamic_options = [
       "caillou avec de la personnalité",
@@ -32,5 +33,8 @@ class PagesController < ApplicationController
       "témoin du temps",
       "poids plume en pierre"
     ]
+  end
+  def dashboard
+    @stones = Stone.all
   end
 end
