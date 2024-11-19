@@ -1,4 +1,36 @@
 class PagesController < ApplicationController
   def home
+    @dynamic_options = [
+      "caillou avec de la personnalité",
+      "ami qui ne parle pas trop",
+      "copain en béton",
+      "bout de nature portable",
+      "gardien immobile",
+      "compagnon en granite",
+      "confident qui ne juge pas",
+      "star de jardin zen",
+      "colocataire qui ne salit pas",
+      "touche de minéral à votre quotidien",
+      "caillou rigolo",
+      "rocher légendaire",
+      "galet bavard",
+      "ami minéral",
+      "joyau oublié",
+      "fragment antique",
+      "trésor géologique",
+      "compagnon solide",
+      "vestige du passé",
+      "bloc énigmatique",
+      "fidèle copain",
+      "mystère de granite",
+      "héros rocailleux",
+      "morceau de nature",
+      "protecteur immobile",
+      "joyeux roc",
+      "solitaire silencieux",
+      "fragment magique",
+      "témoin du temps",
+      "poids plume en pierre"
+    ]
   end
 end

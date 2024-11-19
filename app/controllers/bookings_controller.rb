@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_stone, only: [:create]
+  before_action :set_stone, only: [:create, :new]
   def index
     @bookings = Bookings.all
   end
@@ -11,15 +11,17 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.stone = Stone.find(params[:stone_id])
+    @booking.user = User.first
+
     if @booking.save
-      redirect_to new_stone_booking_path
+      redirect_to stone_path(@stone)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-
+    
   end
 
   def show
