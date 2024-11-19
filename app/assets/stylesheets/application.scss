@@ -20,4 +20,9 @@
 .image-grid img {
   width: 100%; /* Images prennent la largeur de leur cellule */
   height: auto; /* Conserve le ratio */
+@import "pages/show";
+}
+
+body {
+  color: black;
 }

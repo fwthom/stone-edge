@@ -34,7 +34,4 @@ class PagesController < ApplicationController
       "poids plume en pierre"
     ]
   end
-  def dashboard
-    @stones = Stone.all
-  end
 end

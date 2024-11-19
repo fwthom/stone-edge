@@ -6,6 +6,14 @@ class StonesController < ApplicationController
 
   def show
     @stone = Stone.find(params[:id])
+    @booking = Booking.new
+    @bookings = @stone.bookings
+    @bookings_dates = @bookings.map do |booking|
+      {
+        from: booking.start_date,
+        to:   booking.end_date
+      }
+    end
   end
 
   def new
@@ -21,7 +29,6 @@ class StonesController < ApplicationController
       render :new
     end
   end
-
 
   private
 
