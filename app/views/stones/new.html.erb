@@ -1,0 +1,11 @@
+<h1>Quelle amie partagerez vous avec le monde ?</h1>
+
+<%= image_tag 'https://images.wemystic.fr/articles/pierres-de-meditation-cover_1517766352.jpg', width:'900px' %>
+
+<%= simple_form_for(@stone) do |f| %>
+  <%= f.input :name, label: "nom de la pierre" %>
+  <%= f.input :size, label: "taille" %>
+  <%= f.input :condition, label: "état" %>
+  <%= f.input :personnality_traits, label: "traits de personnalité" %>
+  <%= f.submit %>
+<% end %>

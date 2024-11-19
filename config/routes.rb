@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -9,8 +10,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
-  # MVC BOOKINGS JEAN 
+  
   resources :users do 
     resources :bookings, only: [:index, :show, :edit, :update, :destroy]
   end
@@ -18,6 +18,4 @@ Rails.application.routes.draw do
   resources :stones do
     resources :bookings, only: [:new, :create, :show]
   end
-  # END MVC BOOKINGS JEAN
-
 end
