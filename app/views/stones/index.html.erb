@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Toutes ces pierres sont dispo : </h1>
+
+
+    <% @stones.each do |stone| %>
+      <div class="card border-2">
+        <h1><%= link_to stone.name, stone_path(stone) %></h1>
+        <%= image_tag stone.image_url, style: "width: 200px;" %>
+        <p><%= stone.backstory %></p>
+        <p><%= stone.personnality_traits %></p>
+        <p><%= stone.condition %></p>
+        <p><%= stone.size %></p>
+        <p><%= stone.category %></p>
+      </div>
+    <% end %>
+</div>
