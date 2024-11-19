@@ -1,1 +1,101 @@
-// Specific CSS for your home-page
+.home-banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('https://images.alphacoders.com/137/thumb-1920-1377873.png') no-repeat center center;
+  background-position: 75% 75%;
+  border-radius: 16px;
+  height: 350px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align everything to the left */
+  justify-content: center; /* Vertically center content */
+  margin-top: 8px;
+}
+
+.text-container {
+  margin-bottom: 20px; /* Space between text and buttons */
+}
+
+.top-line {
+  display: flex;
+  align-items: center; /* Align static and dynamic text on the same line */
+  gap: 10px; /* Space between static and dynamic text */
+}
+
+.static-top {
+  font-size: 3.5em;
+  font-family: 'Chakra Petch', cursive;
+  color: #fff;
+  margin: 0;
+}
+
+.dynamic-text-wrapper {
+  display: inline-block;
+}
+
+.dynamic-text {
+  font-size: 3.5em;
+  font-family: 'Chakra Petch', semibold;
+  color: #fff;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  font-weight: 700;
+}
+
+.dynamic-text.rotate-out {
+  animation: rotate-out 0.5s ease forwards;
+}
+
+.dynamic-text.rotate-in {
+  animation: rotate-in 0.5s ease forwards;
+}
+
+@keyframes rotate-out {
+  0% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-in {
+  0% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+.static-bottom {
+  font-size: 1.8em;
+  font-family: 'Chakra Petch', cursive;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.action-button {
+  background-color: #fff;
+  color: #46494C;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-button:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
