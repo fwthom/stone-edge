@@ -1,3 +1,17 @@
-<h1>Voilà toutes les infos sur la <%= @stone.name %></h1>
-<%= link_to "Faire un booking", new_stone_booking_path(@stone) %>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @stone.image_url; %>);">
+  <div class="container">
+    <h1> La <strong><%= @stone.name %></strong> est 100% dispo pour toi!</h1>
+    <p><%= @stone.personnality_traits %></p>
+    <%= link_to "Faire un booking", new_stone_booking_path(@stone), class: "btn btn-flat" %>
+  </div>
+</div>
+
+<h2>Tous les details de cette pierre : </h2>
+        <p><%= @stone.backstory %></p>
+        <p><%= @stone.personnality_traits %></p>
+        <p><%= @stone.condition %></p>
+        <p><%= @stone.size %></p>
+        <p><%= @stone.category %></p>
+
 <%= link_to "Back to list", stones_path %>
