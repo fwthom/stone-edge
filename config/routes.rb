@@ -20,6 +20,4 @@ Rails.application.routes.draw do
   end
   # END MVC BOOKINGS JEAN
 
-
-  
 end
