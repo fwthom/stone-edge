@@ -34,4 +34,5 @@ class PagesController < ApplicationController
       "poids plume en pierre"
     ]
   end
+
 end
