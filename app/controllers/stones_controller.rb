@@ -1,4 +1,5 @@
 class StonesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @stones = Stone.all
   end
@@ -30,7 +31,7 @@ class StonesController < ApplicationController
   end
 
   private
-  
+
   def stone_params
     params.require(:stone).permit(:name, :size, :condition, :backstory, :dailyprice, :personnality_traits, :photo, :category_id)
   end
