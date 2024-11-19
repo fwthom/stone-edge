@@ -1,7 +1,6 @@
 require "test_helper"
 
 class StonesControllerTest < ActionDispatch::IntegrationTest
-<<<<<<< HEAD
   test "should get index" do
     get stones_index_url
     assert_response :success
@@ -12,8 +11,6 @@ class StonesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-=======
->>>>>>> 7d910294967fcfaf1ccb9a41e1fea3622cc8c9af
   test "should get new" do
     get stones_new_url
     assert_response :success
@@ -23,7 +20,6 @@ class StonesControllerTest < ActionDispatch::IntegrationTest
     get stones_create_url
     assert_response :success
   end
-<<<<<<< HEAD
 
   test "should get update" do
     get stones_update_url
@@ -39,6 +35,4 @@ class StonesControllerTest < ActionDispatch::IntegrationTest
     get stones_destroy_url
     assert_response :success
   end
-=======
->>>>>>> 7d910294967fcfaf1ccb9a41e1fea3622cc8c9af
 end
