@@ -1,1 +1,67 @@
-// Specific CSS for your home-page
+.home-banner {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.static-top,
+.static-bottom {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.dynamic-text-wrapper {
+  margin: 10px 0; 
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.dynamic-text {
+  font-size: 2em;
+  font-weight: bold;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.dynamic-text.rotate-out {
+  animation: rotate-out 0.5s ease forwards;
+}
+
+.dynamic-text.rotate-in {
+  animation: rotate-in 0.5s ease forwards;
+}
+
+@keyframes rotate-out {
+  0% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-in {
+  0% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+.static-bottom {
+  font-size: 2em;
+  color: #555;
+  margin-top: 15px;
+}
+
+.dynamic-text {
+  font-family: 'Fredericka the Great', cursive;
+}

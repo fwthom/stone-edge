@@ -1,2 +1,38 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+
+
+<div class="home-banner">
+  <h1 class="static-top">Trouvez un</h1>
+  <div class="dynamic-text-wrapper">
+    <span id="dynamic-text" class="dynamic-text">un X</span>
+  </div>
+  <h2 class="static-bottom">près de chez vous</h2>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const options = <%= @dynamic_options.to_json.html_safe %>;
+    const dynamicText = document.getElementById('dynamic-text');
+    let index = 0;
+
+    function updateText() {
+      // Remove both rotate-out and rotate-in classes to reset the animation
+      dynamicText.classList.remove('rotate-in', 'rotate-out');
+
+      // Add the rotate-out animation
+      dynamicText.classList.add('rotate-out');
+      setTimeout(() => {
+        // Update the text after rotate-out finishes
+        index = (index + 1) % options.length; // Cycle to the next option
+        dynamicText.textContent = options[index];
+
+        // Add the rotate-in animation
+        dynamicText.classList.remove('rotate-out'); // Ensure smooth transition
+        dynamicText.classList.add('rotate-in');
+      }, 500); // Matches rotate-out animation duration
+    }
+
+    // Change the text every 3 seconds
+    setInterval(updateText, 3000);
+  });
+</script>
