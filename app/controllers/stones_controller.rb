@@ -21,7 +21,8 @@ class StonesController < ApplicationController
 
   def create
     @stone = Stone.new(stone_params)
-    if @stone.save
+    @stone.user = current_user
+    if @stone.save!
       redirect_to @stone, notice: 'Stone was successfully created.'
     else
       render :new
@@ -29,14 +30,8 @@ class StonesController < ApplicationController
   end
 
   private
-
+  
   def stone_params
-    params.require(:stone).permit(:name, :backstory, :daily_price,
-      :personnality_traits, :condition, :size, :image_url, :user_id,
-      :category_id, :created_at, :updated_at)
-  end
-
-  def stone_params
-    params.require(:stone).permit(:name, :backstory, :daily_price, :personality_traits, :condition, :size, :image_url, :user_id, :category_id)
+    params.require(:stone).permit(:name, :size, :condition, :backstory, :dailyprice, :personnality_traits, :photo, :category_id)
   end
 end
