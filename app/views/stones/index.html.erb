@@ -4,7 +4,7 @@
 
     <% @stones.each do |stone| %>
       <div class="card border-2">
-        <h1><%= link_to stone.name, stone_path(stone) %></h1>
+        <h1><%= link_to stone.name, stone_path(stone, start_date: 25) %></h1>
         <%= image_tag stone.image_url, style: "width: 200px;" %>
         <p><%= stone.backstory %></p>
         <p><%= stone.personnality_traits %></p>

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Devise routes for users with custom sessions controller
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
 
   # Root path
+
   root to: "pages#home"
 
   # Health check route

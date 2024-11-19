@@ -5,6 +5,14 @@ class StonesController < ApplicationController
 
   def show
     @stone = Stone.find(params[:id])
+    @booking = Booking.new
+    @bookings = @stone.bookings
+    @bookings_dates = @bookings.map do |booking|
+      {
+        from: booking.start_date,
+        to:   booking.end_date
+      }
+    end
   end
 
   def new
@@ -21,11 +29,8 @@ class StonesController < ApplicationController
     end
   end
 
-
-
-
   private
-
+  
   def stone_params
     params.require(:stone).permit(:name, :size, :condition, :backstory, :dailyprice, :personnality_traits, :photo, :category_id)
   end
