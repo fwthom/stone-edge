@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   # Devise routes for users with custom sessions controller
-  devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  }
+  devise_for :users
 
   # Root path
   root to: "pages#home"
@@ -10,7 +8,7 @@ Rails.application.routes.draw do
   # Health check route
   get "up", to: "rails/health#show", as: :rails_health_check
 
-  # Nested user routes for bookings management
+  # Nested user routes for bookings management and profile display
   resources :users do
     resources :bookings, only: [:index, :show, :edit, :update, :destroy]
   end
@@ -19,5 +17,7 @@ Rails.application.routes.draw do
   resources :stones do
     resources :bookings, only: [:new, :create, :show]
   end
+  resources :pages, only: [] do
+    get 'profile/:id', to: 'pages#profile', as: :profile
+  end
 end
-  
