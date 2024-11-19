@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
     @booking.user = User.first
 
     if @booking.save
-      redirect_to stone_path
+      redirect_to stone_path(@stone)
     else
       render :new, status: :unprocessable_entity
     end
