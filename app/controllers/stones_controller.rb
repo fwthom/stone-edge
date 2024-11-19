@@ -5,6 +5,14 @@ class StonesController < ApplicationController
 
   def show
     @stone = Stone.find(params[:id])
+    @booking = Booking.new
+    @bookings = @stone.bookings
+    @bookings_dates = @bookings.map do |booking|
+      {
+        from: booking.start_date,
+        to:   booking.end_date
+      }
+    end
   end
 
   def new
@@ -13,7 +21,6 @@ class StonesController < ApplicationController
 
   def create
     @stone = Stone.new(stone_params)
-
     if @stone.save
       redirect_to @stone, notice: 'Stone was successfully created.'
     else
@@ -28,7 +35,6 @@ class StonesController < ApplicationController
       :personnality_traits, :condition, :size, :image_url, :user_id,
       :category_id, :created_at, :updated_at)
   end
-
 
   def stone_params
     params.require(:stone).permit(:name, :backstory, :daily_price, :personality_traits, :condition, :size, :image_url, :user_id, :category_id)

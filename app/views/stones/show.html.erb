@@ -1,3 +1,44 @@
-<h1>Voilà toutes les infos sur la <%= @stone.name %></h1>
-<%= link_to "Faire un booking", new_stone_booking_path(@stone) %>
-<%= link_to "Back to list", stones_path %>
+<div>
+<h1>Découvrez <%= @stone.name %></h1>
+<%= link_to "Retourner aux résultats", stones_path %>
+<div class=d-flex data-controller="stone-show-controller">
+  
+  <%= image_tag @stone.image_url, style: "width: 200px;" %>
+  <div class=mx-3>
+    <div>
+      <h2>L'histoire de cette pierre</h2>
+      <%= @stone.backstory %>
+      <h2>Rencontrez le propriétaire</h2>
+      <%= @stone.user.email %>
+    </div>
+  </div>
+  <div>
+    <h2>Réservez cette pierre</h2>
+      <h3>
+        <% if params[:start_date] && params[:end_date] %>
+          <% duration = params[:end_date] - params[:start_date] %>
+          Coût estimé <%= duration*@stone.price %>
+        <% end %> 
+      </h3>
+
+<div class="container" data-controller="datepicker">
+  <div class="form-wrapper">
+    <h2>Book a stone</h2>
+    <%= simple_form_for [@stone, @booking] do |f| %>
+      <%= f.input :start_date, as: :string,
+                               required: false,
+                               label: false,
+                               input_html: { class: "d-none", id: "range_start" , data: {datepicker_target: "start"}} %>
+      <%= f.input :end_date, as: :string,
+                             required: false,
+                             label: false,
+                             input_html: { class: "d-none", id: "range_end", data: {datepicker_target: "end"} } %>
+      <%= f.button :submit, "Book", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div data-datepicker-target="dateForm"
+      data-bookings="<%= @bookings_dates.to_json %>">
+  </div>
+</div>
+
+</div>
