@@ -1,2 +1,10 @@
 <h1>Bookings#new</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
+
+<%= simple_form_for(Booking.new) do |f| %>
+<%= f.input :start_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :end_date %>
+  <%= f.submit %>
+<% end %>
