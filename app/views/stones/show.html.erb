@@ -21,6 +21,15 @@
     data-booking-end-date-value="<%= params[:end_date] %>" 
     data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
 
+=======
+  <% if @stone.photo.attached? %>
+    <%= cl_image_tag @stone.photo.key, style: "width: 200px;", class: "card-img-top" %>
+  <% else %>
+    <%= cl_image_tag "development/17n6kwpi22xr4dlapk6w6t56qudu", class: "card-img-top", alt: "Image par défaut" %>
+  <% end %>
+
+  <div class=mx-3>
+
     <div>
       <h4>Calcul de prix en JS</h4>      
       <h3 data-booking-target="priceShow"></h3>
