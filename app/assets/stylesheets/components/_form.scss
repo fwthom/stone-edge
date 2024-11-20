@@ -1,0 +1,62 @@
+/* Center the form container */
+.form-container {
+  max-width: 600px;
+  margin: 50px auto; /* Center vertically and horizontally */
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #ddd; /* Soft border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Drop shadow */
+}
+
+/* Form title */
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form inputs */
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Add spacing between fields */
+}
+
+/* Dropdown specific */
+.country-dropdown {
+  font-size: 1rem;
+}
+
+/* Form actions */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Error notifications (optional Devise styling) */
+.error_notification {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}

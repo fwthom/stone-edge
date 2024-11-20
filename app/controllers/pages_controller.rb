@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :home
   def home
     @dynamic_options = [
       "caillou avec de la personnalité",
@@ -8,9 +9,7 @@ class PagesController < ApplicationController
       "gardien immobile",
       "compagnon en granite",
       "confident qui ne juge pas",
-      "star de jardin zen",
       "colocataire qui ne salit pas",
-      "touche de minéral à votre quotidien",
       "caillou rigolo",
       "rocher légendaire",
       "galet bavard",
@@ -32,5 +31,14 @@ class PagesController < ApplicationController
       "témoin du temps",
       "poids plume en pierre"
     ]
+  end
+  def profile
+    @user = User.find_by(id: params[:id]) || User.find_by(username: params[:id])
+
+    if @user
+      # Optional: load additional user-related data here (e.g., posts, bookings, etc.)
+    else
+      redirect_to root_path, alert: "User not found"
+    end
   end
 end
