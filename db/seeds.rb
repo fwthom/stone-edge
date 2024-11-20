@@ -1,14 +1,13 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-#
-#
+require 'open-uri'
+
+def attach_photo(stone, public_id)
+  stone.photo.attach(
+    io: URI.open(Cloudinary::Utils.cloudinary_url(public_id)),
+    filename: "#{public_id.split('/').last}.jpg", # Generate a filename from the public_id
+    content_type: "image/jpeg"
+  )
+end
+
 # Supprimer les anciens enregistrements
 Stone.destroy_all
 User.destroy_all
@@ -45,6 +44,7 @@ categories = Category.create!([
 puts "Catégories Créées"
 # Création de nouvelles pierres associées aux utilisateurs
 puts "Création des stones"
+DEFAULT_IMAGE_URL = Cloudinary::Utils.cloudinary_url("development/17n6kwpi22xr4dlapk6w6t56qudu")
 stones = Stone.create!([
   {
     name: "Ruby",
@@ -206,9 +206,9 @@ stones = Stone.create!([
     user: users[3],
     category: categories.sample
   }
-])
-puts "Pierres Créées"
-puts "Stones Créées"
+]).each do |stone|
+  attach_photo(stone, "development/17n6kwpi22xr4dlapk6w6t56qudu")
+end
 
 
 puts "Seed completed: #{User.count} users and #{Stone.count} stones created."
