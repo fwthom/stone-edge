@@ -28,7 +28,7 @@
     </div>
 
 
-      <div data-action="click->booking#updatePrice"> 
+      <div data-action="change->booking#updatePrice"> 
         <%= simple_form_for [@stone, @booking] do |f| %>
           <%= f.input :start_date, as: :string,
                                   required: false,
@@ -54,4 +54,4 @@
         data-bookings="<%= @bookings_dates.to_json %>">
     </div>
   </div>
-</div>
+</div>  
