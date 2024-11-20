@@ -24,8 +24,10 @@ Rails.application.routes.draw do
 
   # Stone routes with nested bookings
   resources :stones do
-    resources :bookings, only: [:new, :create, :show]
+    resources :bookings, only: [:new, :create, :show, :edit, :update]
   end
+
+
   resources :pages, only: [] do
     get 'profile/:id', to: 'pages#profile', as: :profile
   end

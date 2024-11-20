@@ -30,6 +30,28 @@ class StonesController < ApplicationController
     end
   end
 
+    def edit
+      @stone = Stone.find(params[:id])
+    end
+
+    def update
+      @stone = Stone.find(params[:id])
+      if @stone.update(stone_params)
+        redirect_to @stone, notice: 'La pierre a été mise à jour avec succès.'
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @stone = Stone.find(params[:id])
+      if @stone.destroy
+        redirect_to dashboard_path, notice: 'Une amie supprimée'
+      else
+        redirect_to dashboard_path, alert: 'Suppression impossible.'
+      end
+    end
+
   private
 
   def stone_params
