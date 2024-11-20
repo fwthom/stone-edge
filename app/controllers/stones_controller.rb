@@ -61,6 +61,6 @@ class StonesController < ApplicationController
   private
 
   def stone_params
-    params.require(:stone).permit(:name, :size, :condition, :backstory, :dailyprice, :personnality_traits, :photo, :category_id)
+    params.require(:stone).permit(:name, :size, :condition, :backstory, :daily_price, :personnality_traits, :photo, :category_id)
   end
 end

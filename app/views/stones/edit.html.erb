@@ -7,10 +7,15 @@
   <%= f.input :condition, label: "État" %>
   <%= f.input :personnality_traits, label: "Personnalité" %>
   <%= f.association :category, label: "Catégorie" %>
+  <%= f.input :daily_price, label: "Prix journalier" %>
   <%= f.input :photo, as: :file, label: "Photo" %>
   <% if @stone.photo.attached? %>
     <p>Photo actuelle :</p>
     <%= cl_image_tag @stone.photo.key, height: 100 %>
   <% end %>
-  <%= f.submit "Mets ta pierre à jour" %>
+  <div style="text-align: right;">
+  <%= f.submit "Mets ta pierre à jour", class: "my-custom-button btn btn-warning" %>
+</div>
+
+
 <% end %>
