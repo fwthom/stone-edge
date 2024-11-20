@@ -29,8 +29,7 @@ export default class extends Controller {
   updatePrice() {
 
     if (this.startDateTarget.value && this.endDateTarget.value) {
-      const diffTime =  Date.parse(this.endDateTarget.value) - Date.parse(this.startDateTarget.value)
-      const duration = Math.floor((diffTime) / (1000 * 60 * 60 * 24));
+      const duration = this.computeDuration();
       const priceString = this.priceValue;
       const price = parseFloat(priceString);
       const totalPrice = duration * price;
@@ -39,13 +38,15 @@ export default class extends Controller {
     else {
       this.priceShowTarget.innerText = `Saisir deux dates pour calculer le prix`
     }
+  }
 
-
-
-    // const date1 = new Date(this.startDateValue);
-    // const date2 = new Date(this.endDateValue);
-    // const priceString = this.priceValue;
-    // const duration = Math.floor((date2 - date1) / (1000 * 60 * 60 * 24));
-    // const price = parseFloat(priceString);
+  computeDuration() {
+    const diffTime = (Date.parse(this.endDateTarget.value) - Date.parse(this.startDateTarget.value))
+    if (diffTime === 0) {
+      return 1
+    }
+    else {
+      return Math.floor((diffTime) / (1000 * 60 * 60 * 24))
+    }
   }
 }
