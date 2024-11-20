@@ -2,7 +2,6 @@ class StonesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @stones = Stone.all
-
     @markers = @stones.geocoded.map do |stone|
       {
         lat: stone.latitude,

@@ -10,18 +10,19 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.stone = Stone.find(params[:stone_id])
-    @booking.user = User.first
-
+    @booking.stone = @stone
+    @booking.user = current_user
+    @booking.price = 333
+    @booking.status ="Planned"
     if @booking.save
-      redirect_to stone_path(@stone)
+      redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      raise
+      render "stones/show", status: :unprocessable_entity
     end
   end
 
   def show
-    raise
     set_booking
   end
 
