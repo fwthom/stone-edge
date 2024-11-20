@@ -22,25 +22,34 @@
     data-booking-end-date-value="<%= params[:end_date] %>" 
     data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
 
-      <div>
-        <% if params[:start_date] && params[:end_date] %>
-          <% duration = Date.parse(params[:end_date]) - Date.parse(params[:start_date]) %>
-          <h3 data-booking-target="price">Coût estimé <%= duration*@stone.daily_price %> €</h3>
-        <% end %> 
-      </div>
+    <div>
+<h4>Calcul de prix en JS</h4>      
+<h3 data-booking-target="priceShow"></h3>
+    </div>
 
-      <%= simple_form_for [@stone, @booking] do |f| %>
-        <%= f.input :start_date, as: :string,
+
+      <div data-action="click->booking#updatePrice"> 
+        <%= simple_form_for [@stone, @booking] do |f| %>
+          <%= f.input :start_date, as: :string,
+                                  required: false,
+                                  label: false,
+                                  input_html: { class: "d-none", id: "range_start" , data: {datepicker_target: "start", booking_target: "startDate"}} %>
+          <%= f.input :end_date, as: :string,
                                 required: false,
                                 label: false,
-                                input_html: { class: "d-none", id: "range_start" , data: {datepicker_target: "start", booking_target: "startDate"}} %>
-        <%= f.input :end_date, as: :string,
-                              required: false,
-                              label: false,
-                              input_html: { class: "d-none", id: "range_end", data: {datepicker_target: "end", booking_target: "endDate"} } %>
-        <%= f.button :submit, "Book", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+                                input_html: { class: "d-none", id: "range_end", data: {datepicker_target: "end", booking_target: "endDate"} } %>
+          <%= f.button :submit, "Book", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+
+    <h4>Calcul de prix dans le dur</h4>        
+      <% if params[:start_date] && params[:end_date] %>
+        <% duration = Date.parse(params[:end_date]) - Date.parse(params[:start_date]) %>
+        <h3 data-booking-target="price">Coût estimé <%= duration*@stone.daily_price %> €</h3>
+      <% end %> 
+      </div>
+
     <div data-datepicker-target="dateForm"
         data-bookings="<%= @bookings_dates.to_json %>">
     </div>
