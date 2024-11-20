@@ -15,13 +15,16 @@ User.destroy_all
 Category.destroy_all
 
 # Création de nouveaux utilisateurs
+puts "Création des users"
 users = User.create!([
-  { email: "thomas@lewagon.org", password: "password", username: "Thomas", bio: "lorem"},
-  { email: "camille@lewagon.org", password: "password", username: "Camille", bio: "lorem"},
-  { email: "jean@lewagon.org", password: "password", username: "Jean", bio: "lorem"},
-  { email: "vincent@lewagon.org", password: "password", username: "Vincent", bio: "lorem"},
+  { email: "thomas@lewagon.org", password: "password", username: "Thomas", bio: "lorem", city: "Lille", country: "France"},
+  { email: "camille@lewagon.org", password: "password", username: "Camille", bio: "lorem", city: "Lille", country: "France"},
+  { email: "jean@lewagon.org", password: "password", username: "Jean", bio: "lorem", city: "Lille", country: "France"},
+  { email: "vincent@lewagon.org", password: "password", username: "Vincent", bio: "lorem", city: "Lille", country: "France"},
 ])
+puts "Users Créés"
 
+puts "Création des catégories"
 categories = Category.create!([
   { name: "Pierre magique", properties: "Accorde un vœu, mais uniquement quand il pleut" },
   { name: "Pierre bavarde", properties: "Raconte des blagues, mais seulement en latin" },
@@ -39,7 +42,9 @@ categories = Category.create!([
   { name: "Pierre mystique", properties: "Prévoit votre avenir... ou celui de quelqu’un d’autre" },
   { name: "Pierre blagueuse", properties: "Fait semblant de ne pas être une pierre" }
 ])
+puts "Catégories Créées"
 # Création de nouvelles pierres associées aux utilisateurs
+puts "Création des stones"
 Stone.create!([
   {
     name: "Ruby",
@@ -74,5 +79,7 @@ Stone.create!([
 
   }
 ])
+puts "Stones Créées"
+
 
 puts "Seed completed: #{User.count} users and #{Stone.count} stones created."
