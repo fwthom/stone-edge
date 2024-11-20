@@ -20,10 +20,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  def edit
-    
-  end
-
   def show
     raise
     set_booking

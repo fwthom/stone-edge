@@ -1,3 +1,7 @@
+<!-- 
+
+Cette view ne sert plus puisque la création de Booking se fait dans la show de la pierre. 
+
 <h1>Book <%= @stone.name %> !</h1>
 
 <%= simple_form_for([@stone, @booking]) do |f| %>
@@ -8,4 +12,6 @@
             as: :string,
             input_html: { data: { controller: "datepicker" } } %>
   <%= f.submit %>
-<% end %>
+<% end %> 
+
+--->

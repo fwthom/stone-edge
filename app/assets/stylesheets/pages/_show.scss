@@ -1,0 +1,14 @@
+.banner {
+  height: 500px;
+  background-size: cover; /* Ajuste l'image pour qu'elle couvre la bannière */
+  background-position: center; /* Centre l'image */
+  background-repeat: no-repeat; /* Empêche la répétition */
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #670BFF;
+  transition: background 0.3s ease;
+}
