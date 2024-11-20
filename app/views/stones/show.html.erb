@@ -15,7 +15,6 @@
 
   <div class="container" data-controller="datepicker">
     <h2>Book a stone</h2>
-
     <div class="form-wrapper" 
     data-controller="booking" 
     data-booking-start-date-value="<%= params[:start_date] %>" 
@@ -23,8 +22,8 @@
     data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
 
     <div>
-<h4>Calcul de prix en JS</h4>      
-<h3 data-booking-target="priceShow"></h3>
+      <h4>Calcul de prix en JS</h4>      
+      <h3 data-booking-target="priceShow"></h3>
     </div>
 
 
@@ -41,13 +40,8 @@
           <%= f.button :submit, "Book", class: "btn btn-primary" %>
         <% end %>
       </div>
-
-
-    <h4>Calcul de prix dans le dur</h4>        
-      <% if params[:start_date] && params[:end_date] %>
-        <% duration = Date.parse(params[:end_date]) - Date.parse(params[:start_date]) %>
-        <h3 data-booking-target="price">Coût estimé <%= duration*@stone.daily_price %> €</h3>
-      <% end %> 
+      
+      
       </div>
 
     <div data-datepicker-target="dateForm"

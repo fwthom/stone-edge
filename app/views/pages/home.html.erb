@@ -10,22 +10,50 @@
     <h2 class="static-bottom">près de chez vous</h2>
   </div>
   <div class="button-container">
-    <a href="/users/sign_up" class="action-button">S'inscrire</a>
-    <a href="/stones/index" class="action-button">Voir la collection</a>
+    <% unless user_signed_in? %>
+  <a href="/users/sign_up" class="action-button">S'inscrire</a>
+    <% end %>
+    <a href="/stones" class="action-button">Voir la collection</a>
+  </div>
+</div>
+<div class="home-container my-2">
+  <h2>Les derniers ajouts</h2>
+
+  <div id="stonesCarousel" class="carousel slide custom-carousel" data-bs-ride="carousel">
+    <div class="carousel-inner custom-carousel-inner">
+      <div class="carousel-item active">
+        <div class="d-flex flex-row flex-nowrap custom-carousel-row">
+          <% Stone.order(created_at: :desc).limit(10).each do |stone| %>
+            <div class="card-stone custom-card mx-2">
+              <% if stone.photo.attached? %>
+                <%= cl_image_tag stone.photo.key, class: "custom-card-img", alt: stone.name %>
+              <% else %>
+                <%= image_tag "rocky.png", class: "custom-card-img", alt: "Placeholder" %>
+              <% end %>
+              <div class="card-body custom-card-body">
+                <h5 class="custom-card-title"><%= stone.name %></h5>
+                <p class="custom-card-text"><%= stone.backstory %></p>
+                <p class="custom-card-text"><strong>Price:</strong> <%= number_to_currency(stone.daily_price) %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#stonesCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#stonesCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 </div>
 
 
-<%= form_with url: stones_path, method: :get do |f| %>
-  <%= f.text_field :query%>
-  <%= f.date_field :start_date, 
-                  as: :string,
-                  data: { controller: "datepicker" } , value: params[:start_date] %>
-   <%= f.date_field :end_date,
-                  as: :string,
-                   data: { controller: "datepicker" }  %>
-  <%= submit_tag "search" %>
-<% end %>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {

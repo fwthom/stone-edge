@@ -32,6 +32,7 @@ class PagesController < ApplicationController
       "poids plume en pierre"
     ]
   end
+
   def profile
     @user = User.find_by(id: params[:id]) || User.find_by(username: params[:id])
 
@@ -41,4 +42,10 @@ class PagesController < ApplicationController
       redirect_to root_path, alert: "User not found"
     end
   end
+
+  def dashboard
+    @stone = Stone.find(16) # stone par défaut
+    @stones = Stone.all
+  end
+
 end

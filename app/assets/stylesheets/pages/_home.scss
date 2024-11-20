@@ -1,7 +1,7 @@
 .home-banner {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-              url('https://images.alphacoders.com/137/thumb-1920-1377873.png') no-repeat center center;
-  background-position: 75% 75%;
+              asset-url('homebanner.png') no-repeat center center;
+  background-size: cover;
   border-radius: 16px;
   height: 350px;
   padding: 20px;
@@ -102,4 +102,73 @@
 
 a {
   text-decoration: none;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align everything to the left */
+  justify-content: center;
+  background-color: lightgrey;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+/* Dedicated styles for the custom carousel */
+.custom-carousel-inner {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 60px; /* Leave space for controls */
+  position: relative;
+}
+
+.custom-carousel-row {
+  display: flex;
+  flex-wrap: nowrap; /* Ensure no wrapping */
+  justify-content: flex-start;
+}
+
+.custom-carousel-control {
+  width: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.custom-carousel-control.custom-carousel-control-prev {
+  left: 10px; /* Control spacing for left */
+}
+
+.custom-carousel-control.custom-carousel-control-next {
+  right: 10px; /* Control spacing for right */
+}
+
+/* Card-specific styles */
+.custom-card {
+  flex: 0 0 calc(20% - 10px); /* Adjust card size dynamically */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-card-img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.custom-card-body {
+  text-align: center;
+}
+
+.custom-card-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.custom-card-text {
+  font-size: 0.9rem;
+  color: #666;
 }

@@ -1,3 +1,7 @@
+.nav-link {
+  color: white;
+}
+
 .navbar-lewagon {
   justify-content: space-between;
   background: #46494C;
@@ -7,7 +11,13 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-lewagon .navbar-brand {
   width: 150px;
   height: auto;
+}
+
+.navbar-lewagon .navbar-brand h1 {
+  font-family: 'Chakra Petch', sans-serif; 
+  color: white;
+  margin: 0;
 }
