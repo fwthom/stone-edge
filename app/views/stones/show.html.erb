@@ -3,7 +3,7 @@
 <h1>Découvrez <%= @stone.name %></h1>
 <%= link_to "Retourner aux résultats", stones_path %>
 <div class=d-flex data-controller="stone-show-controller">
-  
+
   <%= image_tag @stone.image_url, style: "width: 200px;" %>
   <div class=mx-3>
     <div>
@@ -19,7 +19,7 @@
         <% if params[:start_date] && params[:end_date] %>
           <% duration = params[:end_date] - params[:start_date] %>
           Coût estimé <%= duration*@stone.price %>
-        <% end %> 
+        <% end %>
       </h3>
 
 <div class="container" data-controller="datepicker">
