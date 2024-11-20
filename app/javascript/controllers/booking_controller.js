@@ -27,17 +27,13 @@ export default class extends Controller {
 
 
   updatePrice() {
-    console.log("update")
-    console.log("update target", this.startDateTarget.value)
 
-    if (this.startDateValue && this.endDateValue) {
-      this.startDateTarget.value = this.startDateValue;
-      this.endDateTarget.value = this.endDateValue;
+    if (this.startDateTarget.value && this.endDateTarget.value) {
       const diffTime =  Date.parse(this.endDateTarget.value) - Date.parse(this.startDateTarget.value)
-      console.log("diffTime", diffTime);
-      const totalPrice = diffTime * price;
-      console.log("totalPrice", totalPrice);
-      
+      const duration = Math.floor((diffTime) / (1000 * 60 * 60 * 24));
+      const priceString = this.priceValue;
+      const price = parseFloat(priceString);
+      const totalPrice = duration * price;
       this.priceShowTarget.innerText = `Le prix de la location est de ${totalPrice.toFixed(2)} €`
     }
     else {
