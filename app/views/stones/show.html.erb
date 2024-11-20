@@ -4,7 +4,7 @@
 <%= link_to "Retourner aux résultats", stones_path %>
 <div class=d-flex data-controller="stone-show-controller">
   
-  <%= image_tag @stone.image_url, style: "width: 200px;" %>
+  <%# <!-- <%= image_tag @stone.image_url, style: "width: 200px;" %>
   <div class=mx-3>
     <div>
       <h2>L'histoire de cette pierre</h2>
@@ -17,10 +17,12 @@
     <h2>Réservez cette pierre</h2>
       <h3>
         <% if params[:start_date] && params[:end_date] %>
-          <% duration = params[:end_date] - params[:start_date] %>
-          Coût estimé <%= duration*@stone.price %>
+          <% duration = Date.parse(params[:end_date]) - Date.parse(params[:start_date]) %>
+          Coût estimé <%= duration*@stone.daily_price %>
         <% end %> 
       </h3>
+    </div>
+
 
 <div class="container" data-controller="datepicker">
   <div class="form-wrapper">
