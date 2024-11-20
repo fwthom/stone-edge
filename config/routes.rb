@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  # get '/dashboard', to: 'pages#dashboard'
+  get '/dashboard', to: 'pages#dashboard'
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -30,4 +30,3 @@ Rails.application.routes.draw do
     get 'profile/:id', to: 'pages#profile', as: :profile
   end
 end
-  
