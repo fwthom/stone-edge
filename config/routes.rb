@@ -30,3 +30,4 @@ Rails.application.routes.draw do
     get 'profile/:id', to: 'pages#profile', as: :profile
   end
 end
+  
