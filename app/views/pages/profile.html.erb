@@ -1,19 +1,53 @@
-<h1><%= @user.username || "User Profile" %></h1>
-
-<div class="profile-details">
-  <p><strong>First Name:</strong> <%= @user.first_name %></p>
-  <p><strong>Last Name:</strong> <%= @user.last_name %></p>
-  <p><strong>Email:</strong> <%= @user.email %></p>
-  <p><strong>City:</strong> <%= @user.city %></p>
-  <p><strong>Country:</strong> <%= @user.country %></p>
-
-  <% if @user.bio.present? %>
-    <p><strong>Bio:</strong> <%= @user.bio %></p>
-  <% end %>
-
-  <% if @user.photo.attached? %>
-    <div class="profile-photo">
-      <%= image_tag @user.photo, alt: "Profile photo" %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <% if @user.photo.attached? %>
+        <div class="profile-photo mb-3">
+          <%= image_tag @user.photo.variant(resize_to_fill: [200, 200]), alt: "Profile photo", class: "rounded-circle img-thumbnail" %>
+        </div>
+      <% else %>
+        <div class="profile-photo mb-3">
+          <%= image_tag "default_profile.png", alt: "Default Profile Photo", class: "rounded-circle img-thumbnail" %>
+        </div>
+      <% end %>
+      <h2 class="mt-3"><%= @user.username || "User Profile" %></h2>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary mt-3" %>
     </div>
-  <% end %>
+
+    <div class="col-md-8">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Profile Details</h4>
+          <hr>
+          <p><strong>First Name:</strong> <%= @user.first_name %></p>
+          <p><strong>Last Name:</strong> <%= @user.last_name %></p>
+          <p><strong>Email:</strong> <%= @user.email %></p>
+          <p><strong>City:</strong> <%= @user.city || "Not specified" %></p>
+          <p><strong>Country:</strong> <%= @user.country || "Not specified" %></p>
+          <% if @user.bio.present? %>
+            <p><strong>Bio:</strong> <%= @user.bio %></p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title">Stones Owned</h4>
+          <hr>
+          <% if @user.stones.any? %>
+            <ul class="list-group">
+              <% @user.stones.each do |stone| %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <%= link_to stone.name, stone_path(stone), class: "text-decoration-none" %>
+                  <span class="badge bg-secondary"><%= stone.category.try(:name) || "No Category" %></span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>No stones owned yet.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
