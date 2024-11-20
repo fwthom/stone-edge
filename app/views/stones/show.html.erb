@@ -4,7 +4,12 @@
 <%= link_to "Retourner aux résultats", stones_path %>
 <div class=d-flex data-controller="stone-show-controller">
 
-  <%= image_tag @stone.image_url, style: "width: 200px;" %>
+  <% if @stone.photo.attached? %>
+    <%= cl_image_tag @stone.photo.key, style: "width: 200px;", class: "card-img-top" %>
+  <% else %>
+    <%= cl_image_tag "development/17n6kwpi22xr4dlapk6w6t56qudu", class: "card-img-top", alt: "Image par défaut" %>
+  <% end %>
+
   <div class=mx-3>
     <div>
       <h2>L'histoire de cette pierre</h2>
