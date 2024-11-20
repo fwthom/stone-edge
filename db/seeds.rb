@@ -16,18 +16,31 @@ Category.destroy_all
 
 # Création de nouveaux utilisateurs
 users = User.create!([
-  { email: "thomas@lewagon.org", password: "password" },
-  { email: "camille@lewagon.org", password: "password" },
-  { email: "jean@lewagon.org", password: "password" },
-  { email: "vincent@lewagon.org", password: "password" }
+  { email: "thomas@lewagon.org", password: "password", username: "Thomas", bio: "lorem"},
+  { email: "camille@lewagon.org", password: "password", username: "Camille", bio: "lorem"},
+  { email: "jean@lewagon.org", password: "password", username: "Jean", bio: "lorem"},
+  { email: "vincent@lewagon.org", password: "password", username: "Vincent", bio: "lorem"},
 ])
 
 categories = Category.create!([
-  name:"Pierre idiote",
-  properties: "Cette pierre rend + bête"
+  { name: "Pierre magique", properties: "Accorde un vœu, mais uniquement quand il pleut" },
+  { name: "Pierre bavarde", properties: "Raconte des blagues, mais seulement en latin" },
+  { name: "Pierre chanceuse", properties: "Augmente vos chances aux jeux... sauf au Monopoly" },
+  { name: "Pierre gourmande", properties: "Adore les desserts, surtout les tartes aux fraises" },
+  { name: "Pierre paresseuse", properties: "Ne bougera jamais, même pour sauver le monde" },
+  { name: "Pierre curieuse", properties: "Pose des questions, mais ne veut jamais écouter les réponses" },
+  { name: "Pierre romantique", properties: "Tombe amoureuse de toutes les pierres qu'elle croise" },
+  { name: "Pierre timide", properties: "Rougit quand on la regarde trop longtemps" },
+  { name: "Pierre philosophe", properties: "Pense qu'elle est au centre de l'univers" },
+  { name: "Pierre DJ", properties: "Joue de la musique disco dès qu'il y a de la lumière" },
+  { name: "Pierre ninja", properties: "Se cache dès qu'on essaie de la trouver" },
+  { name: "Pierre à câlins", properties: "Demande des câlins toutes les 10 minutes" },
+  { name: "Pierre météo", properties: "Change de couleur selon la température extérieure" },
+  { name: "Pierre mystique", properties: "Prévoit votre avenir... ou celui de quelqu’un d’autre" },
+  { name: "Pierre blagueuse", properties: "Fait semblant de ne pas être une pierre" }
 ])
 # Création de nouvelles pierres associées aux utilisateurs
-stones = Stone.create!([
+Stone.create!([
   {
     name: "Ruby",
     backstory: "Another-worldly gem found in the depths of a volcano.",
