@@ -1,23 +1,41 @@
 <div class="mt-5">
 
 
-
+<%= current_user.email %>
+<p> User ID <%= current_user.id %> </p>
+<p> last stone user_id<%= current_user.stones.last.user_id %></p>
 <h1>Mes Amies</h1>
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-    <% @stones.each do |stone| %>
+    <% current_user.stones.each do |stone| %>
       <div class="col">
-        <div class="card h-100">
-          <div class="card-img-wrapper">
-            <% if stone.photo.attached? %>
-              <%= image_tag stone.photo, class: "card-img-top" %>
-            <% else %>
-            <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732095149/development/v1ok5b7y5ic18h99z94i65timxip.jpg?_s=public-apps", class: "card-img-top", alt: "Image par défaut" %>
-            <% end %>
-          </div>
+        <div class="card h-100 border border-0 shadow shadow-1">
+
+          <%= link_to stone_path(stone) do %>
+            <div class="card-img-wrapper">
+              <% if stone.photo.attached? %>
+                <%= image_tag stone.photo, class: "card-img-top" %>
+              <% else %>
+                <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732095149/development/v1ok5b7y5ic18h99z94i65timxip.jpg?_s=public-apps", class: "card-img-top", alt: "Image par défaut" %>
+              <% end %>
+            </div>
+          <% end %>
+
+
+
+
           <div class="card-body">
             <h5 class="card-title"><%= stone.name %></h5>
             <p class="backstory"><%= stone.backstory %></p>
+            <%= link_to stone_path(stone), data: { turbo_method: :delete, turbo_confirm: 'vraiment ?' } do %>
+              <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732102251/bin-svgrepo-com_njcdpx.jpg?_s=public-apps", class: "bin", alt: "Image par défaut" %>
+            <% end %>
+
+            <%= link_to edit_stone_path(stone) do %>
+              <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732104217/pencil-svgrepo-com_fhlba0.jpg?_s=public-apps", class: "bin", alt: "Image par défaut" %>
+            <% end  %>
+
+
           </div>
         </div>
       </div>
@@ -31,19 +49,35 @@
 
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-    <% @stones.each do |stone| %>
+    <% current_user.stones.each do |stone| %>
       <div class="col">
-        <div class="card h-100">
-          <div class="card-img-wrapper">
-            <% if stone.photo.attached? %>
-              <%= image_tag stone.photo, class: "card-img-top" %>
-            <% else %>
-              <%= image_tag "https://thumbs.dreamstime.com/b/la-pile-de-deux-pierres-zen-les-cailloux-gris-m%C3%A9ditation-dominent-108897267.jpg", class: "card-img-top", alt: "Image par défaut" %>
-            <% end %>
-          </div>
+        <div class="card h-100 border border-0 shadow shadow-1">
+
+          <%= link_to stone_path(stone) do %>
+            <div class="card-img-wrapper">
+              <% if stone.photo.attached? %>
+                <%= image_tag stone.photo, class: "card-img-top" %>
+              <% else %>
+                <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732095149/development/v1ok5b7y5ic18h99z94i65timxip.jpg?_s=public-apps", class: "card-img-top", alt: "Image par défaut" %>
+              <% end %>
+            </div>
+          <% end %>
+
+
+
+
           <div class="card-body">
             <h5 class="card-title"><%= stone.name %></h5>
             <p class="backstory"><%= stone.backstory %></p>
+            <%= link_to stone_path(stone), data: { turbo_method: :delete, turbo_confirm: 'vraiment ?' } do %>
+              <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732102251/bin-svgrepo-com_njcdpx.jpg?_s=public-apps", class: "bin", alt: "Image par défaut" %>
+            <% end %>
+
+            <%= link_to edit_stone_path(stone) do %>
+              <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732104217/pencil-svgrepo-com_fhlba0.jpg?_s=public-apps", class: "bin", alt: "Image par défaut" %>
+            <% end  %>
+
+
           </div>
         </div>
       </div>
@@ -79,5 +113,8 @@
   body {
     background-color:white;
     color: black;
+  }
+  .bin {
+    width:20px;
   }
 </style>

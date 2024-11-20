@@ -1,2 +1,16 @@
 <h1>Stones#edit</h1>
 <p>Find me in app/views/stones/edit.html.erb</p>
+
+<%= simple_form_for(@stone) do |f| %>
+  <%= f.input :name, label: "Nom de la pierre" %>
+  <%= f.input :size, label: "Taille" %>
+  <%= f.input :condition, label: "État" %>
+  <%= f.input :personnality_traits, label: "Personnalité" %>
+  <%= f.association :category, label: "Catégorie" %>
+  <%= f.input :photo, as: :file, label: "Photo" %>
+  <% if @stone.photo.attached? %>
+    <p>Photo actuelle :</p>
+    <%= image_tag @stone.photo.variant(resize_to_limit: [100, 100]) %>
+  <% end %>
+  <%= f.submit "Mets ton amie à jour" %>
+<% end %>

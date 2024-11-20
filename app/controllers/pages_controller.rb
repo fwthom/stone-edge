@@ -44,8 +44,8 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @stone = Stone.find(16) # stone par défaut
-    @stones = Stone.all
+    @stones = current_user.stones
   end
+
 
 end
