@@ -1,3 +1,9 @@
-.stone-show-card {
-  
+.left-stone-show-card {
+  border: 12px;
+  background-color: $main;
+  .stone-show-card-img {
+    width:100%;
+    height:auto;
+
+  }
 }
