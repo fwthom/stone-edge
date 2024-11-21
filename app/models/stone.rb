@@ -9,7 +9,7 @@ class Stone < ApplicationRecord
   pg_search_scope :search_by_name_backstory_personnality,
   against: [ :name, :backstory, :personnality_traits ],
   associated_against: {
-    category: [:name]
+    category: [:name],
   },
   using: {
     tsearch: { prefix: true } 
@@ -17,7 +17,7 @@ class Stone < ApplicationRecord
 
 
 
-  
+
   geocoded_by :address
   before_create :geocode
 
