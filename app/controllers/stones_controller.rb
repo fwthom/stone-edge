@@ -2,12 +2,7 @@ class StonesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     search
-    @markers = @stones.geocoded.map do |stone|
-      {
-        lat: stone.latitude,
-        lng: stone.longitude
-      }
-    end
+    set_markers
   end
 
   def search
@@ -34,6 +29,7 @@ class StonesController < ApplicationController
         from: booking.start_date,
         to:   booking.end_date
       }
+    set_marker
     end
   end
 
@@ -79,4 +75,24 @@ class StonesController < ApplicationController
     params.require(:stone).permit(:name, :size, :condition, :backstory, :daily_price, :personnality_traits, :photo, :category_id)
   end
 
+  def set_markers
+    @markers = @stones.geocoded.map do |stone|
+      {
+        lat: stone.latitude,
+        lng: stone.longitude
+      }
+    end
+  end
+
+  def set_marker
+    if @stone.latitude != nil && @stone.longitude != nil 
+      @marker =
+        {
+          lat: @stone.latitude,
+          lng: @stone.longitude
+        }
+    else 
+      @marker = nil
+    end
+  end
 end
