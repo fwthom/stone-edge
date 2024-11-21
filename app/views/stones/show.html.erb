@@ -1,8 +1,8 @@
+<div class=back-results>
+<%= link_to "< Retourner aux résultats", stones_path %>
+</div>
+
 <div class="show-big-container", data-controller="datepicker">
-
-  <%= link_to "Retourner aux résultats", stones_path %>
-
-
   <div class="show-container">
     <div class="left-stone-container">
       <div class="align-center">
@@ -23,8 +23,17 @@
     </div>
 
     <div class="right-stone-container">
-        <h2>Book a stone</h2>
-
+        <% if @marker != nil %>
+        <h2>Localisation</h2>
+          <div class="map-stone border border-2 ms-4">
+              <div style="width: 300px; height: 300px;"
+                data-controller="map"
+                data-map-markers-value="<%= @marker.to_json %>"
+                data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+              </div>
+            </div>
+          <% end %>
+        <h2>Réservation</h2>
         <div class="form-wrapper"
             data-controller="booking"
             data-booking-start-date-value="<%= params[:start_date] %>"
@@ -72,13 +81,5 @@
 
 </div>
 
-<% if @marker != nil %>
-  <div class="map-stone border border-2 ms-4">
-      <div style="width: 300px; height: 300px;"
-        data-controller="map"
-        data-map-markers-value="<%= @marker.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-  <% end %>
+
   </div>  
