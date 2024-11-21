@@ -64,6 +64,7 @@
   color: inherit; /* Garde la couleur du texte */
   background-color: $main;
   border-radius: 0.5rem;
+  box-shadow: 2px 2px 4px $shadow;
 }
 
 .card-link:hover {
@@ -90,7 +91,7 @@
   translate: -50%;
   left: 50%;
   border-radius: 50%;
-  box-shadow: 2px 2px 6px $shadow;
+  box-shadow: 2px 2px 4px $shadow;
 }
 
 .card-body {
