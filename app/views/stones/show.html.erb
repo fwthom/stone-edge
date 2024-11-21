@@ -33,6 +33,7 @@
 
 
 
+
         <% if @stone.user == current_user %>
           <div>
             <div id="DeleteEtid" style="width:30px">
@@ -47,24 +48,25 @@
           </div>
         <% end %>
         <% unless @stone.user == current_user %>
+
           <div>
             <h3 data-booking-target="priceShow"></h3>
           </div>
 
-          <div data-action="change->booking#updatePrice">
+           <div data-action="change->booking#updatePrice">
             <%= simple_form_for [@stone, @booking] do |f| %>
               <%= f.input :start_date, as: :string,
-                                        required: false,
-                                        label: false,
-                                        input_html: { class: "d-none", id: "range_start", data: { datepicker_target: "start", booking_target: "startDate" } } %>
-              <%= f.input :end_date, as: :string,
                                       required: false,
                                       label: false,
-                                      input_html: { class: "d-none", id: "range_end", data: { datepicker_target: "end", booking_target: "endDate" } } %>
-              <%= f.button :submit, "Book", class: "btn btn-primary" %>
+                                      input_html: { class: "d-none", id: "range_start", data: { datepicker_target: "start", booking_target: "startDate" } } %>
+              <%= f.input :end_date, as: :string,
+                                    required: false,
+                                    label: false,
+                                    input_html: { class: "d-none", id: "range_end", data: { datepicker_target: "end", booking_target: "endDate" } } %>
+              <%= f.button :submit, "Réserver cette pierre", class: "btn btn-primary" %>
             <% end %>
           </div>
-<% end %>
+        <% end %>
 
 
         <div data-datepicker-target="dateForm"
