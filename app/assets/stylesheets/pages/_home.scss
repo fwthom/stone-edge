@@ -55,34 +55,87 @@
   background-color: #ddd;
 }
 
-.category-banner {
-  height: 100vh; /* Full viewport height */
+.categories-container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center the content like home-banner */
-  align-items: flex-start; /* Align content to the left */
+}
+
+.category-banner {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  padding-left: 60px; /* Same left padding as home-banner */
-  scroll-snap-align: start; /* Ensure smooth snapping behavior */
+  position: relative;
+  padding: 20px;
 }
 
-.category-info {
-  margin-bottom: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  border-radius: 10px;
+.category-header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 15px;
+  border-radius: 8px;
 }
 
 .category-name {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   color: white;
   margin: 0;
 }
 
 .category-properties {
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: white;
-  margin-top: 10px;
+  margin: 5px 0 0 0;
+}
+
+.stones-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.stone-card {
+  flex: 0 0 auto;
+  width: 120px;
+  text-align: center;
+}
+
+.stone-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.stone-name {
+  font-size: 1rem;
+  color: white;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.stones-title {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stones-list {
+  display: flex;
+  gap: 15px;
+}
+
+a {
+  text-decoration: none;
 }

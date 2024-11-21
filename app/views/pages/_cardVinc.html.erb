@@ -1,0 +1,19 @@
+
+
+<div class="card-stone">
+  <div>
+   <% if stone.photo.attached? %>
+    <%= cl_image_tag stone.photo.key %>
+   <% end %>
+  </div>
+  <div class="card-body">
+    <div class="card-description">
+      <p id="card-category"><%= stone.category.name %></p>
+      <h5 id="card-name"><%= stone.name %></h5>
+      <p id="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+    </div>
+    <div class="price">
+      <p id="card-daily-price"><%= stone.daily_price %>€ par jour</p>
+    </div>
+  </div>
+</div>
