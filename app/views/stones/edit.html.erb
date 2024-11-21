@@ -1,21 +1,31 @@
-<h1>Modifier votre pierre</h1>
+ <div class="container" style="width:400px;">
+
+        <h1>Modifier votre pierre</h1>
 
 
-<%= simple_form_for(@stone) do |f| %>
-  <%= f.input :name, label: "Nom de la pierre" %>
-  <%= f.input :size, label: "Taille" %>
-  <%= f.input :condition, label: "État" %>
-  <%= f.input :personnality_traits, label: "Personnalité" %>
-  <%= f.association :category, label: "Catégorie" %>
-  <%= f.input :daily_price, label: "Prix journalier" %>
-  <%= f.input :photo, as: :file, label: "Photo" %>
-  <% if @stone.photo.attached? %>
-    <p>Photo actuelle :</p>
-    <%= cl_image_tag @stone.photo.key, height: 100 %>
-  <% end %>
-  <div style="text-align: right;">
-  <%= f.submit "Mets ta pierre à jour", class: "my-custom-button btn btn-warning" %>
-</div>
+      <%# Start form %>
+          <%= simple_form_for(@stone) do |f| %>
+            <%= f.input :name, label: "nom de la pierre" %>
+            <%= f.input :size, label: "taille" %>
+            <%= f.input :condition, label: "état" %>
+            <%= f.input :personnality_traits, label: "personnalité" %>
+            <%= f.association :category, label: "Categorie" %>
+            <%= f.input :daily_price, label: "Prix journalier" %>
+            <%= f.input :photo, as: :file, label: "Photo" %>
 
 
-<% end %>
+        <%# Start if de la photo actuelle %>
+            <% if @stone.photo.attached? %>
+              <p>Photo actuelle :</p>
+              <%= cl_image_tag @stone.photo.key, height: 100 %>
+            <%= f.submit "Enregistrer les modifications", class: "my-custom-button btn btn-warning" %>
+            <% end %>
+        <%# If end %>
+
+      </div>
+      <%# End du form %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
