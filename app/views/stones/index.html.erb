@@ -9,18 +9,22 @@
 
 <%= link_to stone_path(stone), class: "card-link" do %>
         <div class="card-stone">
-          <div class="card-img-top">
+          <div>
           <% if stone.photo.attached? %>
-            <%= cl_image_tag stone.photo.key, style: "width: 200px;" %>
+            <%= cl_image_tag stone.photo.key %>
           <% end %>
-
           </div>
           <div class="card-body">
-            <h5><%= stone.name %></h5>
-            <p>Category: <%= stone.category.name %></p>
-            <p class="card-text"> Backstory:<%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
-            <p class="price text-end" style=""><%= stone.daily_price %>€ par jour</p>
+            <div class="card-description">
+              <p id="card-category"><%= stone.category.name %></p>
+              <h5 id="card-name"><%= stone.name %></h5>
+              <p id="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+            </div>
+            <div class="price">
+              <p id="card-daily-price"><%= stone.daily_price %>€ par jour</p>
+            </div>
           </div>
+
         </div>
       <% end %>
     <% end %>
