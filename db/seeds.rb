@@ -25,21 +25,14 @@ puts "Users Créés"
 
 puts "Création des catégories"
 categories = Category.create!([
-  { name: "Pierre magique", properties: "Accorde un vœu, mais uniquement quand il pleut" },
-  { name: "Pierre bavarde", properties: "Raconte des blagues, mais seulement en latin" },
-  { name: "Pierre chanceuse", properties: "Augmente vos chances aux jeux... sauf au Monopoly" },
-  { name: "Pierre gourmande", properties: "Adore les desserts, surtout les tartes aux fraises" },
-  { name: "Pierre paresseuse", properties: "Ne bougera jamais, même pour sauver le monde" },
-  { name: "Pierre curieuse", properties: "Pose des questions, mais ne veut jamais écouter les réponses" },
-  { name: "Pierre romantique", properties: "Tombe amoureuse de toutes les pierres qu'elle croise" },
-  { name: "Pierre timide", properties: "Rougit quand on la regarde trop longtemps" },
-  { name: "Pierre philosophe", properties: "Pense qu'elle est au centre de l'univers" },
-  { name: "Pierre DJ", properties: "Joue de la musique disco dès qu'il y a de la lumière" },
-  { name: "Pierre ninja", properties: "Se cache dès qu'on essaie de la trouver" },
-  { name: "Pierre à câlins", properties: "Demande des câlins toutes les 10 minutes" },
-  { name: "Pierre météo", properties: "Change de couleur selon la température extérieure" },
-  { name: "Pierre mystique", properties: "Prévoit votre avenir... ou celui de quelqu’un d’autre" },
-  { name: "Pierre blagueuse", properties: "Fait semblant de ne pas être une pierre" }
+  { name: "Pierre magique", properties: "Accorde un vœu, mais uniquement quand il pleut", photo_url: "pierre-magique.png" },
+  { name: "Pierre bavarde", properties: "Raconte des blagues, mais seulement en latin", photo_url: "pierre-bavarde.png" },
+  { name: "Pierre gourmande", properties: "Adore les desserts, surtout les tartes aux fraises", photo_url: "pierre-gourmande.png" },
+  { name: "Pierre romantique", properties: "Tombe amoureuse de toutes les pierres qu'elle croise", photo_url: "pierre-romantique.png" },
+  { name: "Pierre timide", properties: "Rougit quand on la regarde trop longtemps", photo_url: "pierre-timide.png" },
+  { name: "Pierre philosophe", properties: "Pense qu'elle est au centre de l'univers", photo_url: "pierre-philosophe.png" },
+  { name: "Pierre DJ", properties: "Joue de la musique disco dès qu'il y a de la lumière", photo_url: "pierre-dj.png" },
+  { name: "Pierre ninja", properties: "Se cache dès qu'on essaie de la trouver", photo_url: "pierre-ninja.png" },
 ])
 puts "Catégories Créées"
 # Création de nouvelles pierres associées aux utilisateurs
