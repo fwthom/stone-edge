@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.stone = Stone.find(params[:stone_id])
-    @booking.user = User.first
+    @booking.user = current_user
 
     if @booking.save
       redirect_to stone_path(@stone)
@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
     set_booking
   end
 
-  private 
+  private
   def set_stone
     @stone = Stone.find(params[:stone_id])
   end
