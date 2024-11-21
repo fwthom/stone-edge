@@ -10,7 +10,6 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-
     @booking.stone = @stone
     @booking.user = current_user
     start_date = Date.parse(params[:booking][:start_date]) 
@@ -18,12 +17,9 @@ class BookingsController < ApplicationController
     duration = (end_date - start_date).to_i 
     @booking.price = @stone.daily_price * duration
     @booking.status ="Submitted"
-    raise
-
     if @booking.save
       redirect_to root_path
     else
-      raise
       render "stones/show", status: :unprocessable_entity
     end
   end
