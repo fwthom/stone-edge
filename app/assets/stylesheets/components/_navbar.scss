@@ -3,8 +3,11 @@
 }
 
 .navbar-lewagon {
+  font-family: $hero-font;
+  color: $white;
   justify-content: space-between;
-  background: #46494C;
+  background: $black;
+  border-bottom: $white, 2px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -16,17 +19,24 @@
   height: auto;
 }
 
-.navbar-lewagon .navbar-brand h1 {
-  font-family: 'Chakra Petch', sans-serif;
-  color: white;
-  margin: 0;
-}
+// .navbar-lewagon .navbar-brand h1 {
+//   font-family: 'Chakra Petch', sans-serif;
+//   color: white;
+//   margin: 0;
+// }
 
 .profile-picture {
   border-radius: 50%;
 }
 
 .navbar {
+  h1 {
+    font-family: $hero-font;
+    color: $white;
+  }
+  justify-content: space-between;
+  background: $black;
+  border-bottom: 2px solid $white;
   position: fixed;
   width: 100%;
   transition: top 0.3s ease-in-out;

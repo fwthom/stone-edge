@@ -2,45 +2,43 @@
 <%= link_to 'Proposer une pierre', new_stone_path, class: 'btn border border-2' %>
 
 <h1>Mes pierres</h1>
-<div class="container">
+<div class="mt-5">
 
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+<div class="d-flex">
+  <div class="cards-stone">
     <% current_user.stones.each do |stone| %>
-      <div class="col">
-        <div class="card h-100 border border-0 shadow shadow-1">
-
-          <%= link_to stone_path(stone) do %>
-            <div class="card-img-wrapper">
-              <% if stone.photo.attached? %>
-                <%= cl_image_tag stone.photo.key, class: "card-img-top" %>
-              <% else %>
-                <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732095149/development/v1ok5b7y5ic18h99z94i65timxip.jpg?_s=public-apps", class: "card-img-top", alt: "Image par défaut" %>
-              <% end %>
-            </div>
+<%= link_to stone_path(stone), class: "card-link" do %>
+        <div class="card-stone">
+          <div>
+          <% if stone.photo.attached? %>
+            <%= cl_image_tag stone.photo.key %>
           <% end %>
+          </div>
           <div class="card-body">
-            <h5 class="card-title"><%= stone.name %></h5>
-            <p class="backstory"><%= stone.backstory %></p>
-            <%= link_to stone_path(stone), data: { turbo_method: :delete, turbo_confirm: 'vraiment ?' } do %>
-              <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732102251/bin-svgrepo-com_njcdpx.jpg?_s=public-apps", class: "bin", alt: "Image par défaut" %>
-            <% end %>
-            <%= link_to edit_stone_path(stone) do %>
-              <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732104217/pencil-svgrepo-com_fhlba0.jpg?_s=public-apps", class: "bin", alt: "Image par défaut" %>
-            <% end  %>
-                          <%= stone.bookings %>
+            <div class="card-description">
+              <p class="card-category"><%= stone.category.name %></p>
+              <h5 class="card-name"><%= stone.name %></h5>
+              <p class="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+            </div>
 
+            <div class="price d-flex justify-content-around">
+              <p><%= render 'status' %></p>
+              <p class="card-daily-price"><%= stone.daily_price %>€/j</p>
+            </div>
 
           </div>
+
         </div>
-      </div>
+      <% end %>
     <% end %>
-  </div>
-</div>
-</div>
+    </div>
 
 
 
-<div class="mt-5">
+
+
+
 <h1>Mes demandes</h1>
 </div>
 
@@ -86,53 +84,3 @@
 
 
 <% end %>
-
-
-
-
-<% current_user.stones.each do |stone| %>
-<% stone.bookings.each do |booking| %>
-<% if stone.user == current_user %>
-<%= booking.status %>
-<%= booking.stone.name %>
-<%= booking.user.email %>
-<% end %>
-<% end %>
-<% end %>
-
-
-
-
-
-
-
-<style>
-  .card-img-wrapper {
-    height: 350px; /* Fixe une hauteur uniforme pour toutes les images */
-    overflow: hidden; /* Coupe les parties débordantes des images */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f9fa; /* Optionnel : couleur de fond pour les cartes sans image */
-  }
-
-  .card-img-top {
-    max-height: 100%; /* Limite la hauteur à l’intérieur du conteneur */
-    max-width: 100%; /* Limite la largeur à l’intérieur du conteneur */
-    object-fit: cover; /* Maintient un recadrage propre */
-  }
-  .card-title{
-    color:black;
-  }
-  .backstory{
-    color:black;
-    font-size: 16px;
-  }
-  body {
-    background-color:white;
-    color: black;
-  }
-  .bin {
-    width:20px;
-  }
-</style>
