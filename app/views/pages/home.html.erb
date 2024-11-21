@@ -16,48 +16,7 @@
     <a href="/stones" class="action-button">Voir la collection</a>
   </div>
 </div>
-<div class="home-container my-2">
-  <h2 style="font-family: 'Chakra Petch', sans-serif;">Les derniers ajouts</h2>
-
-  <div id="stonesCarousel" class="carousel slide custom-carousel" data-bs-ride="carousel">
-    <!-- Carousel Items -->
-    <div class="carousel-inner custom-carousel-inner">
-      <% Stone.order(created_at: :desc).each_slice(4).with_index do |stones, index| %>
-        <div class="carousel-item <%= 'active' if index.zero? %>">
-          <div class="custom-carousel-row">
-            <% stones.each do |stone| %>
-              <div class="custom-card mx-2">
-                <% if stone.photo.attached? %>
-                  <%= cl_image_tag stone.photo.key, class: "custom-card-img", alt: stone.name %>
-                <% else %>
-                  <%= image_tag "rocky.png", class: "custom-card-img", alt: "Placeholder" %>
-                <% end %>
-                <div class="custom-card-body">
-                  <h5 class="custom-card-title"><%= stone.name %></h5>
-                  <p class="custom-card-text"><%= stone.backstory %></p>
-                  <p class="custom-card-text"><strong>Price:</strong> <%= number_to_currency(stone.daily_price) %></p>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <!-- Carousel Controls -->
-    <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#stonesCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#stonesCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-
-
-
+<div class="home-container">
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {

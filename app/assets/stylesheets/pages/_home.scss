@@ -1,178 +1,56 @@
 .home-banner {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-              asset-url('homebanner.png') no-repeat center center;
-  background-size: cover;
-  border-radius: 16px;
-  height: 350px;
-  padding: 20px;
+  height: 100vh; /* Full viewport height */
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align everything to the left */
-  justify-content: center; /* Vertically center content */
-  margin-top: 8px;
+  justify-content: center;
+  align-items: flex-start; /* Align content to the left */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url('homebanner.png');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding-left: 60px; /* Add space for text on the left */
 }
 
 .text-container {
-  margin-bottom: 20px; /* Space between text and buttons */
-}
-
-.top-line {
   display: flex;
-  align-items: center; /* Align static and dynamic text on the same line */
-  gap: 10px; /* Space between static and dynamic text */
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  justify-content: space-between; /* Evenly distribute spacing */
+  gap: 10px; /* Consistent spacing between lines */
+  color: white;
 }
 
-.static-top {
-  font-size: 3.5em;
-  font-family: 'Chakra Petch', cursive;
-  color: #fff;
-  margin: 0;
-}
-
-.dynamic-text-wrapper {
-  display: inline-block;
+.static-top, .dynamic-text, .static-bottom {
+  color: white; /* Ensure text is visible on dark gradient */
+  line-height: 1.2; /* Adjust line-height for better spacing */
 }
 
 .dynamic-text {
-  font-size: 3.5em;
-  font-family: 'Chakra Petch', semibold;
+  font-size: 4rem; /* Make dynamic text larger */
+  font-family: $hero-font;
   color: #fff;
   transition: transform 0.5s ease, opacity 0.5s ease;
   font-weight: 700;
 }
 
-.dynamic-text.rotate-out {
-  animation: rotate-out 0.5s ease forwards;
-}
-
-.dynamic-text.rotate-in {
-  animation: rotate-in 0.5s ease forwards;
-}
-
-@keyframes rotate-out {
-  0% {
-    transform: rotateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: rotateX(90deg);
-    opacity: 0;
-  }
-}
-
-@keyframes rotate-in {
-  0% {
-    transform: rotateX(-90deg);
-    opacity: 0;
-  }
-  100% {
-    transform: rotateX(0);
-    opacity: 1;
-  }
-}
-
-.static-bottom {
-  font-size: 1.8em;
-  font-family: 'Chakra Petch', cursive;
-  color: #fff;
-  margin-top: 10px;
-}
-
 .button-container {
+  margin-top: 20px; /* Space below the text */
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 10px;
 }
 
 .action-button {
-  background-color: #fff;
-  color: $emerald;
+  background-color: white;
+  color: black;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 10px 20px;
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .action-button:hover {
   background-color: #ddd;
-  transform: scale(1.05);
-}
-
-a {
-  text-decoration: none;
-}
-
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align everything to the left */
-  justify-content: center;
-  background-color: lightgray;
-  padding: 16px;
-  border-radius: 16px;
-}
-/* Custom Carousel Styles */
-.custom-carousel {
-  position: relative;
-}
-
-.custom-carousel-inner {
-  width: 100%;
-  overflow: hidden;
-  padding: 0 60px; /* Reserve space for controls */
-}
-
-.custom-carousel-row {
-  display: flex;
-  justify-content: center; /* Center stones horizontally relative to controls */
-  align-items: center; /* Center stones vertically */
-  flex-wrap: nowrap; /* Ensure no wrapping */
-}
-
-.custom-carousel-control {
-  width: auto;
-  position: absolute;
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%);
-  z-index: 5;
-}
-
-.custom-carousel-control.carousel-control-prev {
-  left: 10px; /* Control spacing on the left */
-}
-
-.custom-carousel-control.carousel-control-next {
-  right: 10px; /* Control spacing on the right */
-}
-
-/* Card Styles */
-.custom-card {
-  flex: 0 0 calc(20% - 10px); /* Dynamically adjust width */
-  border: 1px solid $emerald;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.custom-card-img {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.custom-card-body {
-  text-align: center;
-  padding-top: 4px;
-}
-
-.custom-card-title {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.custom-card-text {
-  font-size: 0.9rem;
-  color: #666;
 }

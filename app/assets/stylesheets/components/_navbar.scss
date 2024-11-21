@@ -25,3 +25,19 @@
 .profile-picture {
   border-radius: 50%;
 }
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  transition: top 0.3s ease-in-out;
+  z-index: 1000;
+  position: relative;
+}
+
+.navbar.navbar-visible {
+  top: 0;
+}
+
+.navbar:not(.navbar-visible) {
+  top: -100px;
+}
