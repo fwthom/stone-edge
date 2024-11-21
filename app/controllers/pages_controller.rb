@@ -46,6 +46,8 @@ class PagesController < ApplicationController
 
   def dashboard
     @stones = current_user.stones
+    @bookings = Booking.where(user_id: current_user.id)
+    @prets = Booking.where(stone.user: current_user)
   end
 
 

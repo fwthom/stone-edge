@@ -1,28 +1,7 @@
 
 <h1>Trouve ta pierre... </h1>
 
-<div class="border border-2 my-3 p-2 ">
-
-<%= simple_form_for :search, url: stones_path, method: :get, html: { class: 'form-inline d-flex justify-content-between' } do |f| %>
-  <div class="form-group">
-    <%= f.input :name, label: "Name", input_html: { value: params[:name] } %>
-  </div>
-  <div class="form-group">
-    <%= f.input :city, label: "City", input_html: { value: params[:city] } %>
-  </div>
-  <div class="form-group">
-    <%= f.input :personnality_traits, label: "Personality Traits", input_html: { value: params[:personnality_traits] } %>
-  </div>
-  <div class="form-group">
-    <%= f.input :condition, label: "Condition", collection: ["New", "Used"], include_blank: true %>
-  </div>
-  <div class="form-group">
-    <%= f.input :size, label: "Size", collection: ["Small", "Medium", "Large"], include_blank: true %>
-  </div>
-  <%= f.submit "Search", class: "btn btn-primary" %>
-<% end %>
-
-</div>
+<%= render 'search' %>
 
 <div class="d-flex">
   <div class="cards-stone">
@@ -30,18 +9,22 @@
 
 <%= link_to stone_path(stone), class: "card-link" do %>
         <div class="card-stone">
-          <div class="card-img-top">
+          <div>
           <% if stone.photo.attached? %>
-            <%= cl_image_tag stone.photo.key, style: "width: 200px;" %>
+            <%= cl_image_tag stone.photo.key %>
           <% end %>
-
           </div>
           <div class="card-body">
-            <h5><%= stone.name %></h5>
-            <p>Category: <%= stone.category.name %></p>
-            <p class="card-text"> Backstory:<%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
-            <p class="price text-end" style=""><%= stone.daily_price %>€ par jour</p>
+            <div class="card-description">
+              <p id="card-category"><%= stone.category.name %></p>
+              <h5 id="card-name"><%= stone.name %></h5>
+              <p id="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+            </div>
+            <div class="price">
+              <p id="card-daily-price"><%= stone.daily_price %>€ par jour</p>
+            </div>
           </div>
+
         </div>
       <% end %>
     <% end %>

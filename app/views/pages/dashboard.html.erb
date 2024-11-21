@@ -41,7 +41,24 @@
 <div class="mt-5">
 <h1>Mes emprunts</h1>
 
-<h3>Actuellement pas d'emprunt</h3>
+</div>
+
+<% @bookings.each do |booking| %>
+
+<div style="width:200px">
+  <div class="card">
+   <% if booking.stone.photo.attached? %>
+      <%= cl_image_tag booking.stone.photo.key, class: "card-img-top", style:"width:200px" %>
+    <% end %>
+    <%= booking.stone.name %>
+    <%= booking.stone.user.email %>
+  </div>
+  </div>
+<% end %>
+
+
+
+
 
 
 

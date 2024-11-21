@@ -1,3 +1,80 @@
-.stone-show-card {
-  
+.cards-stone {
+  padding-top: 150px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  row-gap: 150px;
+  width: 60%;
+}
+
+.card-link {
+  text-decoration: none; /* Retire le soulignement des liens */
+  color: inherit; /* Garde la couleur du texte */
+  background-color: $main;
+  border-radius: 0.5rem;
+}
+
+.card-link:hover {
+  text-decoration: none; /* Toujours sans soulignement au survol */
+  transform: scale(1.02); /* Zoom léger sur la carte */
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-stone {
+
+  height: 300px;
+  position:relative;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-stone img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-top: -36%;
+  position: absolute;
+  translate: -50%;
+  left: 50%;
+  border-radius: 50%;
+  box-shadow: 2px 2px 0px $shadow;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-description{
+  text-align: start;
+}
+
+.price {
+  margin-top: 16px;
+  text-align: end;
+}
+
+#card-category {
+  background-color: $black;
+  margin-bottom: 16px;
+  width: fit-content;
+  color: $white;
+  padding-right: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 64px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 2px 2px 0px $shadow;
+  font-size: 0.9rem;
+}
+
+#card-name, #card-backstory, #card-daily-price {
+  padding-left: 8px;
+}
+
+#card-daily-price {
+  padding-right: 8px;
 }
