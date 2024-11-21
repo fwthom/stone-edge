@@ -1,28 +1,7 @@
 
 <h1>Trouve ta pierre... </h1>
 
-<div class="border border-2 my-3 p-2 ">
-
-<%= simple_form_for :search, url: stones_path, method: :get, html: { class: 'form-inline d-flex justify-content-between' } do |f| %>
-  <div class="form-group">
-    <%= f.input :name, label: "Name", input_html: { value: params[:name] } %>
-  </div>
-  <div class="form-group">
-    <%= f.input :city, label: "City", input_html: { value: params[:city] } %>
-  </div>
-  <div class="form-group">
-    <%= f.input :personnality_traits, label: "Personality Traits", input_html: { value: params[:personnality_traits] } %>
-  </div>
-  <div class="form-group">
-    <%= f.input :condition, label: "Condition", collection: ["New", "Used"], include_blank: true %>
-  </div>
-  <div class="form-group">
-    <%= f.input :size, label: "Size", collection: ["Small", "Medium", "Large"], include_blank: true %>
-  </div>
-  <%= f.submit "Search", class: "btn btn-primary" %>
-<% end %>
-
-</div>
+<%= render 'search' %>
 
 <div class="d-flex">
   <div class="cards-stone">
