@@ -1,0 +1,14 @@
+<% current_user.stones.each do |stone| %>
+  <% stone.bookings.each do |booking| %>
+        <% case booking.status %>
+          <% when "Submitted" %>
+            <i class="fa-solid fa-hourglass-start"></i>
+          <% when "Confirmed" %>
+            <i class="fa-solid fa-check"></i>
+          <% when "Completed" %>
+            <i class="fa-solid fa-house"></i>
+          <% else "Refused" %>
+            <i class="fa-solid fa-ban"></i>
+        <% end %>
+  <% end %>
+<% end %>

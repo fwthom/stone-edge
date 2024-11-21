@@ -6,7 +6,6 @@
 <div class="d-flex">
   <div class="cards-stone">
     <% @stones.each do |stone| %>
-
 <%= link_to stone_path(stone), class: "card-link" do %>
         <div class="card-stone">
           <div>
@@ -16,12 +15,12 @@
           </div>
           <div class="card-body">
             <div class="card-description">
-              <p id="card-category"><%= stone.category.name %></p>
-              <h5 id="card-name"><%= stone.name %></h5>
-              <p id="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+              <p class="card-category"><%= stone.category.name %></p>
+              <h5 class="card-name"><%= stone.name %></h5>
+              <p class="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
             </div>
             <div class="price">
-              <p id="card-daily-price"><%= stone.daily_price %>€ par jour</p>
+              <p class="card-daily-price"><%= stone.daily_price %>€ par jour</p>
             </div>
           </div>
 
