@@ -2,6 +2,14 @@ class StonesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @stones = Stone.all
+    if params[:query].present?
+      @stones = Stone.search_by_name_backstory_personnality(params[:query])
+      # sql_subquery = <<~SQL
+      #   stones.name @@ :query
+      # SQL
+      # @stones = @stones.where(sql_subquery, query: "%#{params[:query]}%")
+      # @movies = @movies.joins(:director).where(sql_subquery, query: params[:query])
+    end
     @markers = @stones.geocoded.map do |stone|
       {
         lat: stone.latitude,

@@ -1,7 +1,20 @@
 
 <h1>Trouve ta pierre... </h1>
 
-<div class="border border-2 my-3 p-2 ">
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: stones_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<!--- <div class="border border-2 my-3 p-2 ">
 
 <%= simple_form_for :search, url: stones_path, method: :get, html: { class: 'form-inline d-flex justify-content-between' } do |f| %>
   <div class="form-group">
@@ -22,10 +35,11 @@
   <%= f.submit "Search", class: "btn btn-primary" %>
 <% end %>
 
-</div>
+</div> -->
 
 <div class="d-flex">
   <div class="cards-stone">
+    
     <% @stones.each do |stone| %>
 
 <%= link_to stone_path(stone), class: "card-link" do %>
