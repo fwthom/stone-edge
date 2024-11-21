@@ -37,12 +37,12 @@
           </div>
           <div class="card-body">
             <div class="card-description">
-              <h5><%= stone.name %></h5>
-              <p><%= stone.category.name %></p>
-              <p><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+              <p id="card-category"><%= stone.category.name %></p>
+              <h5 id="card-name"><%= stone.name %></h5>
+              <p id="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
             </div>
             <div class="price">
-              <p><%= stone.daily_price %>€ par jour</p>
+              <p id="card-daily-price"><%= stone.daily_price %>€ par jour</p>
             </div>
           </div>
 
