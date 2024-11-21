@@ -26,4 +26,13 @@ Rails.application.routes.draw do
   resources :stones do
     resources :bookings, only: [:new, :create, :show, :edit, :update]
   end
+
+  resources :bookings
+
+
+  resources :pages, only: [] do
+    get 'profile/:id', to: 'pages#profile', as: :profile
+  end
+
+
 end
