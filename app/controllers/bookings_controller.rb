@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.stone = Stone.find(params[:stone_id])
     @booking.user = current_user
+    @booking.status = "Submitted"
 
     if @booking.save
       redirect_to stone_path(@stone)

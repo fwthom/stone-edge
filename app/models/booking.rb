@@ -1,5 +1,5 @@
 class Booking < ApplicationRecord
-# STATUSES = %w[Planned Completed Canceled]
+STATUSES = %w[Submitted Confirmed Completed Cancelled]
 
   belongs_to :stone
   belongs_to :user
