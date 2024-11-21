@@ -1,34 +1,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<div class="home-container" data-controller="slideshow" data-action="wheel->slideshow#scroll">
-  <div class="home-banner" data-slideshow-target="section">
-<div class="text-container">
-    <div class="top-line">
-      <h1 class="static-top">Trouvez un</h1>
-      <div class="dynamic-text-wrapper">
-        <span id="dynamic-text" class="dynamic-text">caillou rigolo</span>
-      </div>
-    </div>
-    <h2 class="static-bottom">près de chez vous</h2>
-  </div>
-  <div class="button-container">
-    <% unless user_signed_in? %>
-  <a href="/users/sign_up" class="action-button">S'inscrire</a>
-    <% end %>
-    <a href="/stones" class="action-button">Voir la collection</a>
-  </div>  </div>
+<div class="home-container">
 
+  <div class="home-banner">
+    <div class="text-container">
+      <div class="top-line">
+        <h1 class="static-top">Trouvez un</h1>
+        <div class="dynamic-text-wrapper">
+        <span id="dynamic-text" class="dynamic-text">caillou rigolo</span>
+        </div>
+      </div>
+    <h2 class="static-bottom">près de chez vous</h2>
+    </div>
+      <div class="button-container">
+       <% unless user_signed_in? %>
+        <a href="/users/sign_up" class="action-button">S'inscrire</a>
+        <% end %>
+        <a href="/stones" class="action-button">Voir la collection</a>
+      </div>
+  </div>
   <div class="categories-container">
     <% Category.all.each do |category| %>
       <div class="category-banner"
-           style="background-image: url(<%= asset_path(category.image_url) %>)"
-           data-slideshow-target="section">
-        <div class="category-info">
+          style="background-image: url(<%= asset_path(category.image_url) %>)">
+        <div class="category-header">
           <h2 class="category-name"><%= category.name %></h2>
           <p class="category-properties"><%= category.properties %></p>
         </div>
+        <div class="stones-box">
+          <h3 class="stones-title">Les dernières <%= category.name.split.map(&:pluralize).join(' ') %></h3>
+          <div class="stones-list">
+            <% category.stones.order(created_at: :desc).limit(5).each do |stone| %>
+              <%= link_to stone_path(stone), class: "stone-card-link" do %>
+                <div class="stone-card">
+                  <% if stone.photo.attached? %>
+                    <%= cl_image_tag stone.photo.key, class: "stone-photo", alt: stone.name %>
+                  <% else %>
+                    <%= image_tag "placeholder.png", class: "stone-photo", alt: "Placeholder" %>
+                  <% end %>
+                  <p class="stone-name"><%= stone.name %></p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
       </div>
     <% end %>
   </div>
+
 </div>
 
 
