@@ -1,14 +1,14 @@
 // Import page-specific CSS files here.
 @import "home";
+.map-stone {
+  width: 40%;
+}
+
 .cards-stone {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
   width: 60%;
-}
-
-.map-stone {
-  width: 40%;
 }
 
 .card-link {
