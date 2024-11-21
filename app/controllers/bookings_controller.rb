@@ -12,8 +12,12 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.stone = @stone
     @booking.user = current_user
-    @booking.price = 333
-    @booking.status ="Planned"
+    start_date = Date.parse(params[:booking][:start_date]) 
+    end_date = Date.parse(params[:booking][:end_date])  
+    duration = (end_date - start_date).to_i 
+    @booking.price = @stone.daily_price * duration
+    @booking.status ="Submitted"
+    raise
     if @booking.save
       redirect_to root_path
     else

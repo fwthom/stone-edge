@@ -31,9 +31,6 @@
             data-booking-end-date-value="<%= params[:end_date] %>"
             data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
 
-
-
-
         <% if @stone.user == current_user %>
           <div>
             <div id="DeleteEtid" style="width:30px">
@@ -49,7 +46,7 @@
         <% end %>
         <% unless @stone.user == current_user %>
 
-          <div>
+          <div id="price">
             <h3 data-booking-target="priceShow"></h3>
           </div>
 
