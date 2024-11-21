@@ -10,12 +10,10 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-
     @booking.stone = @stone
     @booking.user = current_user
     @booking.price = 333
-    @booking.status ="submitted"
-
+    @booking.status ="Submitted"
     if @booking.save
       redirect_to root_path
     else
