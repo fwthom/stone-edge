@@ -12,7 +12,7 @@ class Stone < ApplicationRecord
     category: [:name],
   },
   using: {
-    tsearch: { prefix: true } 
+    tsearch: { prefix: true }
   }
 
 
