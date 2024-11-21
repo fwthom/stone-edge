@@ -54,3 +54,35 @@
 .action-button:hover {
   background-color: #ddd;
 }
+
+.category-banner {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the content like home-banner */
+  align-items: flex-start; /* Align content to the left */
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding-left: 60px; /* Same left padding as home-banner */
+  scroll-snap-align: start; /* Ensure smooth snapping behavior */
+}
+
+.category-info {
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.category-name {
+  font-size: 3.5rem;
+  color: white;
+  margin: 0;
+}
+
+.category-properties {
+  font-size: 2rem;
+  color: white;
+  margin-top: 10px;
+}
