@@ -30,7 +30,6 @@
             data-booking-start-date-value="<%= params[:start_date] %>" 
             data-booking-end-date-value="<%= params[:end_date] %>" 
             data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
-
           <div>
             <h3 data-booking-target="priceShow"></h3>
           </div>
@@ -45,7 +44,7 @@
                                     required: false,
                                     label: false,
                                     input_html: { class: "d-none", id: "range_end", data: { datepicker_target: "end", booking_target: "endDate" } } %>
-              <%= f.button :submit, "Book", class: "btn btn-primary" %>
+              <%= f.button :submit, "Réserver cette pierre", class: "btn btn-primary" %>
             <% end %>
           </div>
     </div>
