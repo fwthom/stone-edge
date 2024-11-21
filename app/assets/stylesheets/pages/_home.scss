@@ -85,7 +85,7 @@
 
 .action-button {
   background-color: #fff;
-  color: #46494C;
+  color: $emerald;
   border: none;
   border-radius: 8px;
   padding: 10px 20px;
@@ -109,45 +109,48 @@ a {
   flex-direction: column;
   align-items: flex-start; /* Align everything to the left */
   justify-content: center;
-  background-color: lightgrey;
+  background-color: lightgray;
   padding: 16px;
   border-radius: 16px;
 }
+/* Custom Carousel Styles */
+.custom-carousel {
+  position: relative;
+}
 
-/* Dedicated styles for the custom carousel */
 .custom-carousel-inner {
   width: 100%;
   overflow: hidden;
-  padding: 0 60px; /* Leave space for controls */
-  position: relative;
+  padding: 0 60px; /* Reserve space for controls */
 }
 
 .custom-carousel-row {
   display: flex;
+  justify-content: center; /* Center stones horizontally relative to controls */
+  align-items: center; /* Center stones vertically */
   flex-wrap: nowrap; /* Ensure no wrapping */
-  justify-content: flex-start;
 }
 
 .custom-carousel-control {
   width: auto;
   position: absolute;
-  top: 50%;
+  top: 50%; /* Center vertically */
   transform: translateY(-50%);
   z-index: 5;
 }
 
-.custom-carousel-control.custom-carousel-control-prev {
-  left: 10px; /* Control spacing for left */
+.custom-carousel-control.carousel-control-prev {
+  left: 10px; /* Control spacing on the left */
 }
 
-.custom-carousel-control.custom-carousel-control-next {
-  right: 10px; /* Control spacing for right */
+.custom-carousel-control.carousel-control-next {
+  right: 10px; /* Control spacing on the right */
 }
 
-/* Card-specific styles */
+/* Card Styles */
 .custom-card {
-  flex: 0 0 calc(20% - 10px); /* Adjust card size dynamically */
-  border: 1px solid #ddd;
+  flex: 0 0 calc(20% - 10px); /* Dynamically adjust width */
+  border: 1px solid $emerald;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -161,6 +164,7 @@ a {
 
 .custom-card-body {
   text-align: center;
+  padding-top: 4px;
 }
 
 .custom-card-title {

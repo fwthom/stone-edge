@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get '/dashboard', to: 'pages#dashboard'
-
+  get 'pages/profile/:id', to: 'pages#profile', as: 'profile_page'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -26,10 +26,13 @@ Rails.application.routes.draw do
   resources :stones do
     resources :bookings, only: [:new, :create, :show, :edit, :update]
   end
+
   resources :bookings
 
 
   resources :pages, only: [] do
     get 'profile/:id', to: 'pages#profile', as: :profile
   end
+
+
 end

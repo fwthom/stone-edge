@@ -37,7 +37,8 @@ class PagesController < ApplicationController
     @user = User.find_by(id: params[:id]) || User.find_by(username: params[:id])
 
     if @user
-      # Optional: load additional user-related data here (e.g., posts, bookings, etc.)
+      @stones = @user.stones
+      @photo = @user.avatar
     else
       redirect_to root_path, alert: "User not found"
     end
