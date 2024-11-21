@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_103212) do
     t.text "properties"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
