@@ -7,7 +7,7 @@ export default class extends Controller {
   static targets = ["dateForm", "start", "end"]
 
   connect() {
-    console.log(this.element)
+    console.log("calendar connected")
     // flatpickr(this.element)
     const bookingForm = this.dateFormTarget
     if (bookingForm) {

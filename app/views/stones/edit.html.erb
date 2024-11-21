@@ -1,2 +1,21 @@
-<h1>Stones#edit</h1>
-<p>Find me in app/views/stones/edit.html.erb</p>
+<h1>Modifier votre pierre</h1>
+
+
+<%= simple_form_for(@stone) do |f| %>
+  <%= f.input :name, label: "Nom de la pierre" %>
+  <%= f.input :size, label: "Taille" %>
+  <%= f.input :condition, label: "État" %>
+  <%= f.input :personnality_traits, label: "Personnalité" %>
+  <%= f.association :category, label: "Catégorie" %>
+  <%= f.input :daily_price, label: "Prix journalier" %>
+  <%= f.input :photo, as: :file, label: "Photo" %>
+  <% if @stone.photo.attached? %>
+    <p>Photo actuelle :</p>
+    <%= cl_image_tag @stone.photo.key, height: 100 %>
+  <% end %>
+  <div style="text-align: right;">
+  <%= f.submit "Mets ta pierre à jour", class: "my-custom-button btn btn-warning" %>
+</div>
+
+
+<% end %>
