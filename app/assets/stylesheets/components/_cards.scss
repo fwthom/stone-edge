@@ -1,12 +1,24 @@
 
-.left-stone-show-card {
-  border: 12px;
+.show-container {
+  display: flex;
+}
+
+.left-stone-container {
+  border-radius: 12px;
+  padding: 12px;
   background-color: $main;
+  width:75%;
   .stone-show-card-img {
-    width:100%;
-    height:auto;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 24px;
 
   }
+}
+
+.right-stone-container {
+  width:25%;
 }
 
 .cards-stone {
@@ -49,7 +61,7 @@
   translate: -50%;
   left: 50%;
   border-radius: 50%;
-  box-shadow: 2px 2px 0px $shadow;
+  box-shadow: 2px 2px 6px $shadow;
 }
 
 .card-body {
@@ -78,7 +90,7 @@
   padding-left: 64px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 2px 2px 0px $shadow;
+  box-shadow: 2px 2px 4px $shadow;
   font-size: 0.9rem;
 }
 

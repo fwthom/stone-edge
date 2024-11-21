@@ -1,27 +1,27 @@
 <div data-controller="datepicker">
   <%= link_to "Retourner aux résultats", stones_path %>
-  <div class="row">
-    <div class="col-8">
+
+
+  <div class="show-container">
+    <div class="left-stone-container">
       <div class="align-center">
         <% if @stone.photo.attached? %>
-          <%= cl_image_tag @stone.photo.key, style: "width: 100%;", class: "card-img-top" %>
+          <%= cl_image_tag @stone.photo.key, class: "stone-show-card-img" %>
         <% else %>
-          <%= cl_image_tag "development/17n6kwpi22xr4dlapk6w6t56qudu", class: "card-img-top", alt: "Image par défaut" %>
+          <%= cl_image_tag "development/17n6kwpi22xr4dlapk6w6t56qudu", class: "stone-show-card-img", alt: "Image par défaut" %>
         <% end %>
       </div>
         <div>
           <h1>Découvrez <strong><%= @stone.name %></strong></h1>
-          <h2>L'histoire de cette pierre</h2>
           <h4><%= @stone.category.name %></h4>
-          <h5><%= @stone.category.properties %></h5>
+          <p><%= @stone.category.properties %></p>
           <p><%= @stone.backstory %></p>
           <h2>Rencontrez le propriétaire</h2>
           <%= @stone.user.email %>
       </div>
     </div>
 
-    <div class="col-4">
-      <div class="container">
+    <div class="right-stone-container">
         <h2>Book a stone</h2>
 
         <div class="form-wrapper"
@@ -29,22 +29,20 @@
             data-booking-start-date-value="<%= params[:start_date] %>"
             data-booking-end-date-value="<%= params[:end_date] %>"
             data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
-
-        <% if @stone.user == current_user %>
-          <div>
-            <div id="DeleteEtid" style="width:30px">
-              <%= link_to stone_path(@stone), data: { turbo_method: :delete, turbo_confirm: 'vraiment ?' } do %>
-              <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732102251/bin-svgrepo-com_njcdpx.jpg?_s=public-apps", class: "bin", alt: "Image par défaut", style:"width:30px" %>
-            </div>
+            <% if @stone.user == current_user %>
+              <div>
+                <div id="DeleteEtid" style="width:30px">
+                  <%= link_to stone_path(@stone), data: { turbo_method: :delete, turbo_confirm: 'Vous voulez vraiment supprimer cette pierre ?' } do %>
+                  <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732102251/bin-svgrepo-com_njcdpx.jpg?_s=public-apps", class: "bin", alt: "Image par défaut", style:"width:30px" %>
+                </div>
+                <% end %>
+                <%= link_to edit_stone_path(@stone) do %>
+                  <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732104217/pencil-svgrepo-com_fhlba0.jpg?_s=public-apps", class: "bin", alt: "Image par défaut", style:"width:30px" %>
+                <% end  %>
+              </div>
             <% end %>
-
-            <%= link_to edit_stone_path(@stone) do %>
-              <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732104217/pencil-svgrepo-com_fhlba0.jpg?_s=public-apps", class: "bin", alt: "Image par défaut", style:"width:30px" %>
-            <% end  %>
-          </div>
-        <% end %>
+    
         <% unless @stone.user == current_user %>
-
           <div id="price">
             <h3 data-booking-target="priceShow"></h3>
           </div>
@@ -67,12 +65,10 @@
         <div data-datepicker-target="dateForm"
              data-bookings="<%= @bookings_dates.to_json %>">
         </div>
-
-
-
-      </div>
     </div>
   </div>
+
+
 </div>
 
 <% if @marker != nil %>
