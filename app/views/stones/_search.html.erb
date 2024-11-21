@@ -1,0 +1,28 @@
+<div class="row", data-controller="datepicker">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: stones_path, method: :get, local: true do |f| %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Entrez un mot clé" %>
+  </div>
+  <div class="col-sm-4 my-3">
+        <%= f.text_field :start_date, 
+                required: false, 
+                id: "range_start", 
+                class: "d-none", 
+                data: { datepicker_target: "start", booking_target: "startDate" } %>
+        <%= f.label :end_date, class: "d-none", for: "range_end" %>
+        <%= f.text_field :end_date, 
+                        required: false, 
+                        id: "range_end", 
+                        class: "d-none", 
+                        data: { datepicker_target: "end", booking_target: "endDate" } %>
+    </div>
+        <%= f.submit "Rechercher", class: "btn btn-primary" %>
+    <% end %>
+    <div data-datepicker-target="dateForm"
+              data-bookings="<%= [].to_json %>">
+    </div>
+</div>
+  
