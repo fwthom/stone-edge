@@ -15,7 +15,11 @@
             <div class="card-description">
               <p class="card-category"><%= stone.category.name %></p>
               <h5 class="card-name"><%= stone.name %></h5>
-              <p class="card-backstory"><%= truncate(stone.backstory, length: 45, separator: ' ', omission: '...') %></p>
+              <% if stone.user == current_user %>
+              <p class=card-backstory>(votre pierre) <%= truncate(stone.backstory, length: 80, separator: ' ', omission: '...') %></p>
+              <% else %>
+              <p class="card-backstory"><%= truncate(stone.backstory, length: 80, separator: ' ', omission: '...') %></p>
+              <% end %>
             </div>
             <div class="price">
               <p class="card-daily-price"><%= stone.daily_price %>€ par jour</p>
