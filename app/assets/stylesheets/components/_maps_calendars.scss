@@ -19,10 +19,6 @@
   top: 0;
 }
 
-
-
-
-
 /* Conteneur du calendrier masqué par défaut */
 .datepicker-container.hidden {
   display: none;
@@ -31,9 +27,9 @@
 /* Classe pour afficher le calendrier (gérée par Stimulus) */
 .datepicker-container {
   display: block;
-  background: #29527b;
-  padding: 10px;
-  border-radius: 10px;
+  background: $accent;
+  padding: 12px;
+  border-radius: 12px;
   margin-top: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
