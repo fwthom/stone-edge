@@ -1,0 +1,15 @@
+/* Barre de recherche étendue */
+.search-input {
+  height: 42px;
+  margin: 8px;
+  flex-grow: 1;
+  border-radius: 150px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 16px;
+  min-width: 150px;
+  background-color: $white;
+  color: $accent;
+  border: 1px solid $accent;
+}
+  
