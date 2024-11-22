@@ -1,9 +1,6 @@
-
-<h1>Quelle pierre partagerez-vous avec le monde ?</h1>
-<div class="row">
-
-  <%= image_tag 'https://images.wemystic.fr/articles/pierres-de-meditation-cover_1517766352.jpg', width:'100%' %>
-  <div class="container" style="width:600px;">
+<div class="container">
+  <h1 class="mt-3">Ajouter une pierre a votre collection</h1>
+      <div class="form-container">
           <%= simple_form_for(@stone) do |f| %>
             <%= f.input :name, label: "Le nom de votre pierre" %>
              <%= f.input :size, as: :select, label: "Sa taille", collection:
@@ -18,7 +15,5 @@
             <%= f.input :photo, as: :file, label: "Photo" %>
             <%= f.submit "Partagez cette pierre avec le monde !", class:"rounded-button primary"%>
           <% end %>
-        </div>
-      </div>
-
-
+    </div>
+</div>
