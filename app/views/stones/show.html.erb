@@ -8,20 +8,24 @@
 <div class="show-big-container", data-controller="datepicker">
   <div class="show-container">
     <div class="left-stone-container">
-      <div class="align-center">
-        <% if @stone.photo.attached? %>
-          <%= cl_image_tag @stone.photo.key, class: "stone-show-card-img" %>
-        <% else %>
-          <%= cl_image_tag "development/17n6kwpi22xr4dlapk6w6t56qudu", class: "stone-show-card-img", alt: "Image par défaut" %>
-        <% end %>
-      </div>
-        <div>
-          <h1>Découvrez <strong><%= @stone.name %></strong></h1>
-          <h4><%= @stone.category.name %></h4>
-          <p><%= @stone.category.properties %></p>
-          <p><%= @stone.backstory %></p>
-          <h2>Rencontrez le propriétaire</h2>
-          <%= @stone.user.email %>
+      <div>
+        <div class="align-center">
+          <% if @stone.photo.attached? %>
+            <%= cl_image_tag @stone.photo.key, class: "stone-show-card-img" %>
+          <% else %>
+            <%= cl_image_tag "development/17n6kwpi22xr4dlapk6w6t56qudu", class: "stone-show-card-img", alt: "Image par défaut" %>
+          <% end %>
+        </div>
+          <div>
+            <h1>Découvrez <strong><%= @stone.name %></strong></h1>
+            <h4><%= @stone.category.name %></h4>
+            <p><%= @stone.category.properties %></p>
+            <p><%= @stone.backstory %></p>
+          </div>
+        </div>
+        <div class="show-mail">
+          <h2>Rencontrez le propriétaire :</h2>
+          <p><%= @stone.user.email %></p>
       </div>
     </div>
 
@@ -36,14 +40,12 @@
               </div>
             </div>
           <% end %>
-        <h2>Réservation</h2>
-        <div class="cal-stone-show">
-        <div class="form-wrapper"
-            data-controller="booking"
-            data-booking-start-date-value="<%= params[:start_date] %>"
-            data-booking-end-date-value="<%= params[:end_date] %>"
-            data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
+
+
+
             <% if @stone.user == current_user %>
+            <h2>Modifier ma pierre : </h2>
+            <div class="cal-stone-show">
               <div>
                 <div id="DeleteEtid" style="width:30px">
                   <%= link_to stone_path(@stone), data: { turbo_method: :delete, turbo_confirm: 'Vous voulez vraiment supprimer cette pierre ?' } do %>
@@ -55,8 +57,15 @@
                 <% end  %>
               </div>
             <% end %>
-    
+
         <% unless @stone.user == current_user %>
+        <h2>Réservation</h2>
+        <div class="cal-stone-show">
+        <div class="form-wrapper"
+            data-controller="booking"
+            data-booking-start-date-value="<%= params[:start_date] %>"
+            data-booking-end-date-value="<%= params[:end_date] %>"
+            data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
           <div id="price">
             <h3 data-booking-target="priceShow"></h3>
           </div>
@@ -86,4 +95,4 @@
 
 </div>
 </div>
-</div>  
+</div>
