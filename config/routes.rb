@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   # Custom routes
   get '/dashboard', to: 'pages#dashboard'
+  patch '/bookings/:id/accept', to: 'bookings#accept', as: 'accept'
+  patch '/bookings/:id/decline', to: 'bookings#decline', as: 'decline'
+
   get 'pages/profile/:id', to: 'pages#profile', as: 'profile_page'
 
   # Stone routes with nested bookings

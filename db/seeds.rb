@@ -1,5 +1,8 @@
 require "open-uri"
 
+
+# Supprimer les anciens enregistrements
+Booking.destroy_all
 Stone.destroy_all
 User.destroy_all
 Category.destroy_all
@@ -410,4 +413,4 @@ stones_data.each do |stone_data|
   puts "Created stone '#{stone.name}' with a random image"
 end
 
-puts "Seeding completed!" 
+puts "Seeding completed!"
