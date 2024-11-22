@@ -1,7 +1,25 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
-  
+  def update
+    if current_user.update(user_params)
+      redirect_to profile_page_path(current_user), notice: "Profile updated successfully."
+    else
+      flash[:alert] = "There was an error updating your profile."
+      redirect_to profile_page_path(current_user)
+    end
+  end
+
+  private
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :city, :country, :bio, :photo)
+  end
+
+
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
