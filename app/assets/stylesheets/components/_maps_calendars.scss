@@ -18,3 +18,14 @@
   height:300px;
   top: 0;
 }
+
+#datepicker-container {
+  width: 100%;
+  max-width: 400px; /* Ajustez cette valeur selon vos besoins */
+  height: auto;
+  margin-top: 10px;
+}
+
+#datepicker-container:not(.d-none) {
+  max-height: 200px; /* ou ajustez selon la taille du contenu */
+}

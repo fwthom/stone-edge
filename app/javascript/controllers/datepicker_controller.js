@@ -4,7 +4,7 @@ import rangePlugin from "flatpickrRangePlugin";
 
 export default class extends Controller {
 
-  static targets = ["dateForm", "start", "end"]
+  static targets = ["dateForm", "start", "end", "datepickerContainer"]
 
   connect() {
     console.log("calendar connected")
@@ -21,6 +21,11 @@ export default class extends Controller {
       })
     }
   }
+
+  toggleCalendar() {
+    this.datepickerContainerTarget.classList.toggle("d-none") 
+  }
+
 
   disconnect() {
     if (this.pickrInstance) {
