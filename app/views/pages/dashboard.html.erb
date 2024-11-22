@@ -1,86 +1,288 @@
+
 <div class="mt-5">
-<%= link_to 'Proposer une pierre', new_stone_path, class: 'btn border border-2' %>
+<<<<<<< HEAD
+<%= link_to new_stone_path, class:"no-decoration" do%>
+<img src= "https://clipground.com/images/plus-sign-clipart-7.png" style="width:70px;">
+<div style="width:250px"><h2>Ajouter une pierre</h2>
+<% end %>
+</div>
+=======
+<%= link_to 'Proposer une nouvelle pierre', new_stone_path, class: 'rounded-button primary' %>
 
 <h1>Mes pierres</h1>
 <div class="mt-5">
+>>>>>>> master
 
 
-<div class="d-flex">
-  <div class="cards-stone">
-    <% current_user.stones.each do |stone| %>
-<%= link_to stone_path(stone), class: "card-link" do %>
+
+
+<div class="container" style="width:1300px; height:1000px; align:center">
+
+
+
+<%# ONGLETS ONGLETS ONGLETS %>
+
+<div style="height:150px; margin-top:30px;margin-bottom:50px;">
+
+<ul class="list-inline tabs-underlined">
+ <li>
+    <a href="javascript:void(0);" class="tab-underlined active" onclick="selectTab(event, 'stones')">
+      Ma liste de pierres
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0);" class="tab-underlined active" onclick="selectTab(event, 'bookings')">
+      Prêts
+    </a>
+  </li>
+  <li>
+  <%# # ---------------------------------------------------------- %>
+    <a href="javascript:void(0);" class="tab-underlined" onclick="selectTab(event, 'requests')">
+      Mes demandes
+    </a>
+  </li>
+  <li>
+    <a href="javascript:void(0);" class="tab-underlined" onclick="selectTab(event, 'conversations')">
+      Demandes des utilisateurs
+    </a>
+  </li>
+</ul>
+
+</div>
+
+
+
+
+
+
+
+<div id="content">
+  <!-- Premier onglet: Bookings -->
+  <div id="stones" class="tab-content active">
+
+
+    <div class="test">
+
+    <!-- Boucle pour afficher les pierres -->
+
+     <% current_user.stones.each do |stone| %>
+
+        <div style="width:300px; margin-bottom:150px;">
+          <div class="card">
+            <%= link_to stone_path(stone), class: "card-link" do %>
+              <div class="card-stone">
+                <div>
+                  <% if stone.photo.attached? %>
+                    <%= cl_image_tag stone.photo.key %>
+                  <% end %>
+                </div>
+                <div class="card-body">
+                  <div class="card-description">
+                    <p class="card-category"><%= stone.category.name %></p>
+                    <h5 class="card-name"><%= stone.name %></h5>
+                    <p class="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+                  </div>
+                  <div class="price d-flex justify-content-around">
+                    <p class="card-daily-price"><%= stone.daily_price %>€/j</p>
+                  </div>
+                </div>
+              </div>
+            <% end %> <!-- Fermeture du link_to -->
+          </div>
+        </div>
+      <% end %> <!-- Fermeture de la boucle @stones -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div id="content">
+  <!-- Premier onglet: Bookings -->
+  <div id="bookings" class="tab-content active" style="display: none">
+
+    <!-- Boucle pour afficher les réservations acceptées -->
+    <% @bookings.each do |booking| %>
+
+      <% if booking.status == "Accepted" && booking.stone.user == current_user %>
+        <div style="width:300px">
+          <div class="card">
+
+            <%= link_to stone_path(booking.stone), class: "card-link" do %>
         <div class="card-stone">
           <div>
-          <% if stone.photo.attached? %>
-            <%= cl_image_tag stone.photo.key %>
+          <% if booking.stone.photo.attached? %>
+            <%= cl_image_tag booking.stone.photo.key %>
           <% end %>
           </div>
           <div class="card-body">
             <div class="card-description">
-              <p class="card-category"><%= stone.category.name %></p>
-              <h5 class="card-name"><%= stone.name %></h5>
-              <p class="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+              <p class="card-category"><%= booking.stone.category.name %></p>
+              <h5 class="card-name"><%= booking.stone.name %></h5>
+              <p class="card-backstory"><%= truncate(booking.stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
             </div>
 
             <div class="price d-flex justify-content-around">
-              <p><%= render 'status' %></p>
-              <p class="card-daily-price"><%= stone.daily_price %>€/j</p>
+
+              <p class="card-daily-price"><%= booking.stone.daily_price %>€/j</p>
             </div>
 
           </div>
 
         </div>
+        </div>
+      <% end %>
+
+          </div>
+        </div>
       <% end %>
     <% end %>
-    </div>
+  </div>
 
 
 
 
 
 
-<h1>Mes demandes</h1>
-</div>
+
+
+  <!-- Autres onglets: Requests et Conversations -->
+  <div id="requests" class="tab-content" style="display: none">
+    <p>
+
 
 <% @bookings.each do |booking| %>
 
-<div style="width:200px">
+<div style="width:300px">
 
-<% if (booking.status == "Submitted")%>
-  <div class="card">
-   <% if booking.stone.photo.attached? %>
-      <%= cl_image_tag booking.stone.photo.key, class: "card-img-top", style:"width:200px" %>
-    <% end %>
-    <%= booking.stone.name %>
-    <%= booking.stone.user.email %>
-    <%= booking.status %>
-  </div>
+<% if (booking.status == "Accepted" && booking.user == current_user)%>
+
+
+ <div class="card">
+
+            <%= link_to stone_path(booking.stone), class: "card-link" do %>
+        <div class="card-stone">
+          <div>
+          <% if booking.stone.photo.attached? %>
+            <%= cl_image_tag booking.stone.photo.key %>
+          <% end %>
+            </div>
+             <div class="card-body">
+              <div class="card-description">
+                <p class="card-category"><%= booking.stone.category.name %></p>
+                <h5 class="card-name"><%= booking.stone.name %></h5>
+                <p class="card-backstory"><%= truncate(booking.stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+              </div>
+
+              <div class="price d-flex justify-content-around">
+
+              <p class="card-daily-price"><%= booking.stone.daily_price %>€/j</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+          </div>
   <%end  %>
   </div>
+<% end %>
+</p>
+  </div>
 
 
+
+
+
+
+
+  <div id="conversations" class="tab-content" style="display: none">
+    <div id="salut">
+
+
+            <% @bookings.each do |booking| %>
+
+            <div style="width:300px">
+
+            <% if (booking.status == "Submitted") && (booking.stone.user == current_user) %>
+
+
+ <div class="card">
+
+            <%= link_to stone_path(booking.stone), class: "card-link" do %>
+                <div class="card-stone">
+                  <div>
+                  <% if booking.stone.photo.attached? %>
+                    <%= cl_image_tag booking.stone.photo.key %>
+                  <% end %>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-description">
+                      <p class="card-category"><%= booking.stone.category.name %></p>
+                      <h5 class="card-name"><%= booking.stone.name %></h5>
+                      <p class="card-backstory"><%= truncate(booking.stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+                    </div>
+
+                    <div class="price d-flex justify-content-around">
+
+                      <p class="card-daily-price"><%= booking.stone.daily_price %>€/j</p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              <% end %>
+
+          </div>
+          <h5>Pour <%= booking.user.email %>
+              du tant au tant
+          </h5>
+               <%= link_to "Accepter", accept_path(booking), data: {turbo_method: :patch}, class: "btn btn-success" %>
+                <%= link_to "Decliner", decline_path(booking), data: {turbo_method: :patch}, class: "btn btn-warning" %>
+
+
+
+
+
+
+              <%end  %>
+              </div>
 <% end %>
 
-<div class="mt-5">
-<h1>Mes emprunts en cours</h1>
 
 </div>
-
-<% @bookings.each do |booking| %>
-
-<div style="width:200px">
-
-<% if (booking.status == "Confirmed")%>
-  <div class="card">
-   <% if booking.stone.photo.attached? %>
-      <%= cl_image_tag booking.stone.photo.key, class: "card-img-top", style:"width:200px" %>
-    <% end %>
-    <%= booking.stone.name %>
-    <%= booking.stone.user.email %>
-    <%= booking.status %>
   </div>
-  <%end  %>
-  </div>
+</div>
 
 
-<% end %>
+
+
+
+<script>
+  function selectTab(event, tabName) {
+    event.preventDefault(); // Empêche le rafraîchissement
+
+    // Supprime la classe 'active' de tous les éléments
+    document.querySelectorAll('.tab-underlined').forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+    // Ajoute la classe 'active' à l'onglet cliqué
+    event.target.classList.add('active');
+
+    // Cache tous les contenus de tab
+    document.querySelectorAll('.tab-content').forEach(content => {
+      content.classList.remove('active');
+      content.style.display = 'none'; // optionnel pour un rendu immédiat
+    });
+
+    // Montre le contenu associé à l'onglet cliqué
+    const selectedTabContent = document.getElementById(tabName);
+    selectedTabContent.classList.add('active');
+    selectedTabContent.style.display = 'block'; // optionnel pour un rendu immédiat
+  }
+</script>

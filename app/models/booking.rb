@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
 
-STATUSES = %w[Submitted Confirmed Completed Cancelled]
+STATUSES = %w[Submitted Accepted Share Home]
 
 
 

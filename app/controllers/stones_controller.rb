@@ -7,19 +7,28 @@ class StonesController < ApplicationController
 
   def search
     @stones = Stone.all
-    @stones = @stones.where(category_id: params[:category_id]) if params[:category_id].present?
-    if params[:query].present? || params[:start_date].present? || params[:end_date].present? 
-      @stones = Stone.search_by_name_backstory_personnality(params[:query])
-
-      if params[:start_date].present?
-        @stones = Stone.joins(:bookings).where('bookings.start_date >= ?', "#{params[:start_date]}")
+      @stones = @stones.where(category_id: params[:category_id]) if params[:category_id].present?
+      @stones = @stones.search_by_name_backstory_personnality(params[:query]) if params[:query].present?
+      if params[:start_date].present? || params[:end_date].present?
+      @stones = @stones.left_outer_joins(:bookings)
+      # Exclure les pierres réservées pendant la période demandée
+        if params[:start_date].present? && params[:end_date].present?
+          @stones = @stones.where(
+            'bookings.start_date >= ? OR bookings.end_date <= ? OR bookings.id IS NULL',
+            params[:end_date], params[:start_date]
+          )
+        elsif params[:start_date].present?
+          @stones = @stones.where(
+            'bookings.start_date >= ? OR bookings.id IS NULL',
+            params[:start_date]
+          )
+        elsif params[:end_date].present?
+          @stones = @stones.where(
+            'bookings.end_date <= ? OR bookings.id IS NULL',
+            params[:end_date]
+          )
+        end
       end
-
-      if params[:end_date].present?
-        @stones = Stone.joins(:bookings).where('bookings.end_date <= ?', params[:end_date])
-      end
-
-    end
   end
 
   def show
