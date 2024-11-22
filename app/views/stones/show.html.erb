@@ -64,7 +64,7 @@
                 <ul class="list-group">
                   <% @stone.bookings.each do |booking| %>
                     <li class="d-flex justify-content-between align-items-center py-2"> <!-- Ajout de padding vertical -->
-                      <%= link_to stone_path(@stone), class: "text-decoration-none d-flex justify-content-between align-items-center w-100" do %>
+                      <%= link_to dashboard_path, class: "text-decoration-none d-flex justify-content-between align-items-center w-100" do %>
                         <div class="d-flex flex-column text-dark"> <!-- Conteneur pour le texte -->
                           <p class="mb-1">Réservation par <%= booking.user.first_name %> du <%= booking.start_date %> au <%= booking.end_date %></p>
                         </div>
