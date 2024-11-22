@@ -2,13 +2,7 @@
 
     <div style="margin:'30px;">
       <div class="mt-5">
-        <%= link_to new_stone_path, class:"no-decoration" do%>
-          <img src= "https://clipground.com/images/plus-sign-clipart-7.png" style="width:70px;">
-          <div style="align: center;width:250px">
-          <h2>
-          Ajouter une pierre
-          </h2>
-        <% end %>
+
       </div>
     </div>
 
@@ -16,8 +10,12 @@
 
 <div class="container">
 
-
-<h1>Dashboard</h1>
+  <div class="d-flex justify-content-between">
+    <h1>Dashboard</h1>
+    <%= link_to new_stone_path, class:"no-decoration" do%>
+      <button class="rounded-button primary">Ajouter une pierre</button>
+    <% end %>
+  </div>
 
 <%# ONGLETS ONGLETS ONGLETS %>
 <div style="height:150px; margin-top:30px;margin-bottom:50px;">
