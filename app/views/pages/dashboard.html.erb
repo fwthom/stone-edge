@@ -1,22 +1,20 @@
 
-<div class="mt-5">
-<<<<<<< HEAD
-<%= link_to new_stone_path, class:"no-decoration" do%>
-<img src= "https://clipground.com/images/plus-sign-clipart-7.png" style="width:70px;">
-<div style="width:250px"><h2>Ajouter une pierre</h2>
-<% end %>
-</div>
-=======
-<%= link_to 'Proposer une nouvelle pierre', new_stone_path, class: 'rounded-button primary' %>
 
-<h1>Mes pierres</h1>
-<div class="mt-5">
->>>>>>> master
-
+    <div style="margin:'30px;">
+      <div class="mt-5">
+        <%= link_to new_stone_path, class:"no-decoration" do%>
+          <img src= "https://clipground.com/images/plus-sign-clipart-7.png" style="width:70px;">
+          <div style="align: center;width:250px">
+          <h2>
+          Ajouter une pierre
+          </h2>
+        <% end %>
+      </div>
+    </div>
 
 
 
-<div class="container" style="width:1300px; height:1000px; align:center">
+<div class="container" style="align:center">
 
 
 
@@ -38,7 +36,7 @@
   <li>
   <%# # ---------------------------------------------------------- %>
     <a href="javascript:void(0);" class="tab-underlined" onclick="selectTab(event, 'requests')">
-      Mes demandes
+      Mes bookings
     </a>
   </li>
   <li>
@@ -136,11 +134,14 @@
         </div>
         </div>
       <% end %>
-
+              <h5>prêtée à </h5><%= booking.stone.user.email %>
+               <%= link_to "retournée", return_path(booking), data: {turbo_method: :patch}, class: "btn btn-success" %>
           </div>
         </div>
       <% end %>
     <% end %>
+
+
   </div>
 
 
@@ -257,8 +258,8 @@
 </div>
   </div>
 </div>
-
-
+</div>
+</div>
 
 
 

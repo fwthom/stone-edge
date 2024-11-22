@@ -20,6 +20,12 @@ class BookingsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def return
+    @booking = Booking.find(params[:id])
+    @booking.update(status: 'home')
+    redirect_to dashboard_path
+  end
+
   def new
     @booking = Booking.new
   end
