@@ -1,7 +1,21 @@
 
+
+    <div style="margin:'30px;">
+      <div class="mt-5">
+
+      </div>
+    </div>
+
+
+
 <div class="container">
 
-<h1>Dashboard</h1>
+  <div class="d-flex justify-content-between">
+    <h1>Dashboard</h1>
+    <%= link_to new_stone_path, class:"no-decoration" do%>
+      <button class="rounded-button primary">Ajouter une pierre</button>
+    <% end %>
+  </div>
 
 <%# ONGLETS ONGLETS ONGLETS %>
 <div style="height:150px; margin-top:30px;margin-bottom:50px;">
@@ -12,14 +26,14 @@
     </a>
   </li>
   <li>
-    <a href="javascript:void(0);" class="tab-underlined active" onclick="selectTab(event, 'bookings')">
+    <a href="javascript:void(0);" class="tab-underlined" onclick="selectTab(event, 'bookings')">
       Prêts
     </a>
   </li>
   <li>
   <%# # ---------------------------------------------------------- %>
     <a href="javascript:void(0);" class="tab-underlined" onclick="selectTab(event, 'requests')">
-      Mes demandes
+      Mes bookings
     </a>
   </li>
   <li>
@@ -103,11 +117,14 @@
         </div>
         </div>
       <% end %>
-
+              <h5>prêtée à </h5><%= booking.stone.user.email %>
+               <%= link_to "retournée", return_path(booking), data: {turbo_method: :patch}, class: "btn btn-success" %>
           </div>
         </div>
       <% end %>
     <% end %>
+
+
   </div>
 
 
@@ -224,8 +241,8 @@
 </div>
   </div>
 </div>
-
-
+</div>
+</div>
 
 
 
