@@ -9,6 +9,7 @@ def attach_photo(stone, public_id)
 end
 
 # Supprimer les anciens enregistrements
+Booking.destroy_all
 Stone.destroy_all
 User.destroy_all
 Category.destroy_all

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get '/dashboard', to: 'pages#dashboard'
+  patch '/bookings/:id/accept', to: 'bookings#accept', as: 'accept'
+  patch '/bookings/:id/decline', to: 'bookings#decline', as: 'decline'
+
   get 'pages/profile/:id', to: 'pages#profile', as: 'profile_page'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

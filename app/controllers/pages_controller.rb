@@ -46,12 +46,17 @@ class PagesController < ApplicationController
 
   def dashboard
     @stones = Stone.all
-    # @stones = current_user.stones
-    @bookings = current_user.bookings
+    @bookings = Booking.all
+
+
 
 
 
   end
+
+  # def accept
+  #   raise
+  # end
 
 
 end
