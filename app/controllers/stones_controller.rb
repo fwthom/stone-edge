@@ -2,27 +2,33 @@ class StonesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     search
-    @markers = @stones.geocoded.map do |stone|
-      {
-        lat: stone.latitude,
-        lng: stone.longitude
-      }
-    end
+    set_markers(@stones)
   end
 
   def search
     @stones = Stone.all
-    if params[:query].present? || params[:start_date].present? || params[:end_date].present?
-      @stones = Stone.search_by_name_backstory_personnality(params[:query])
-      
-      if params[:start_date].present?
-        @stones = Stone.joins(:bookings).where('bookings.start_date >= ?', "#{params[:start_date]}")
+      @stones = @stones.where(category_id: params[:category_id]) if params[:category_id].present?
+      @stones = @stones.search_by_name_backstory_personnality(params[:query]) if params[:query].present?
+      if params[:start_date].present? || params[:end_date].present?
+      @stones = @stones.left_outer_joins(:bookings)
+      # Exclure les pierres réservées pendant la période demandée
+        if params[:start_date].present? && params[:end_date].present?
+          @stones = @stones.where(
+            'bookings.start_date >= ? OR bookings.end_date <= ? OR bookings.id IS NULL',
+            params[:end_date], params[:start_date]
+          )
+        elsif params[:start_date].present?
+          @stones = @stones.where(
+            'bookings.start_date >= ? OR bookings.id IS NULL',
+            params[:start_date]
+          )
+        elsif params[:end_date].present?
+          @stones = @stones.where(
+            'bookings.end_date <= ? OR bookings.id IS NULL',
+            params[:end_date]
+          )
+        end
       end
-    
-      if params[:end_date].present?
-        @stones = Stone.joins(:bookings).where('bookings.end_date <= ?', params[:end_date])
-      end
-    end
   end
 
   def show
@@ -35,6 +41,7 @@ class StonesController < ApplicationController
         to:   booking.end_date
       }
     end
+    set_marker(@stone)
   end
 
   def new
@@ -79,4 +86,25 @@ class StonesController < ApplicationController
     params.require(:stone).permit(:name, :size, :condition, :backstory, :daily_price, :personnality_traits, :photo, :category_id)
   end
 
+  def set_markers(stones)
+    @markers = stones.geocoded.map do |stone|
+      {
+        lat: stone.latitude,
+        lng: stone.longitude
+      }
+    end
+  end
+
+  def set_marker(stone)
+    if stone.latitude != nil && stone.longitude != nil
+      @marker =[
+        {
+          lat: stone.latitude,
+          lng: stone.longitude
+        }
+      ]
+    else
+      @marker = nil
+    end
+  end
 end

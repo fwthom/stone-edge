@@ -34,11 +34,9 @@ class BookingsController < ApplicationController
     duration = (end_date - start_date).to_i
     @booking.price = @stone.daily_price * duration
     @booking.status ="Submitted"
-
     if @booking.save
       redirect_to root_path
     else
-
       render "stones/show", status: :unprocessable_entity
     end
   end

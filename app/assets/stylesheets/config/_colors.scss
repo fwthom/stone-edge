@@ -13,7 +13,7 @@ $gray: #1e1e1e;
 
 // inner containers
 
-$light-gray: whitesmoke;
+$light-gray: white;
 // background
 
 $dark-gray: #46494C;
@@ -27,6 +27,13 @@ $emerald: #1985A1;
 
 $black: black;
 $white: white;
+
 $accent: black;
-$main: #CAD2D3;
+$main: #F3F3F1;
+
+$accent: rgb(62, 23, 220);
+$accent-hover:rgba(62, 23, 220, 0.536);
+$main: #F4F4F2;
+$main-hover: #cad2d3b7;
+
 $shadow: rgba(0, 0, 0, 0.2)

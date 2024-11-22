@@ -1,21 +1,24 @@
 
-<h1>Quelle pierre partageras-tu avec le monde ?</h1>
+<h1>Quelle pierre partagerez-vous avec le monde ?</h1>
 <div class="row">
 
   <%= image_tag 'https://images.wemystic.fr/articles/pierres-de-meditation-cover_1517766352.jpg', width:'100%' %>
   <div class="container" style="width:600px;">
           <%= simple_form_for(@stone) do |f| %>
-            <%= f.input :name, label: "nom de la pierre" %>
-            <%= f.input :size, label: "taille" %>
-            <%= f.input :condition, label: "état" %>
-            <%= f.input :personnality_traits, label: "personnalité" %>
+            <%= f.input :name, label: "Le nom de votre pierre" %>
+             <%= f.input :size, as: :select, label: "Sa taille", collection:
+                ['Quelques grammes', 'Quelques kilos', 'Quelques tonnes'], include_blank: "Sélectionnez une taille" %>
+                <%= f.input :condition, as: :select, label: "État de la pierre", collection:
+                ["Neuve de quelques millions d'années", "Moyennement neuve du temps d'avant les dinosaures", "Naissance de la terre"],
+                include_blank: "Sélectionnez une taille" %>
+            <%= f.input :personnality_traits, label: "Sa personnalité" %>
+            <%= f.input :backstory, as: :text, label: "Son histoire", input_html: { rows: 5, class: 'form-control' } %>
             <%= f.association :category, label: "Categorie" %>
-            <%= f.input :daily_price, label: "Prix journalier" %>
+            <%= f.input :daily_price, label: "À quel prix souhaitez-vous la proposer ? (€ / jour)" %>
             <%= f.input :photo, as: :file, label: "Photo" %>
-            <%= f.submit "Partage cette pierre avec le monde"%>
+            <%= f.submit "Partagez cette pierre avec le monde !", class:"rounded-button primary"%>
           <% end %>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+

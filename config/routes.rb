@@ -1,29 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Devise routes for users with custom sessions controller
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Root path
-
   root to: "pages#home"
 
+  # Custom routes
   get '/dashboard', to: 'pages#dashboard'
   patch '/bookings/:id/accept', to: 'bookings#accept', as: 'accept'
   patch '/bookings/:id/decline', to: 'bookings#decline', as: 'decline'
 
   get 'pages/profile/:id', to: 'pages#profile', as: 'profile_page'
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Health check route
-  get "up", to: "rails/health#show", as: :rails_health_check
-
-  # resources :users do
-  #   resources :bookings, only: [:index, :show, :edit, :update, :destroy]
-  #   member do
-  #     get :dashboard
-  #   end
-  # end
-
 
   # Stone routes with nested bookings
   resources :stones do
@@ -32,10 +18,6 @@ Rails.application.routes.draw do
 
   resources :bookings
 
-
-  resources :pages, only: [] do
-    get 'profile/:id', to: 'pages#profile', as: :profile
-  end
-
-
+  # Health check route
+  get "up", to: "rails/health#show", as: :rails_health_check
 end

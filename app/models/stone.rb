@@ -15,9 +15,6 @@ class Stone < ApplicationRecord
     tsearch: { prefix: true }
   }
 
-
-
-
   geocoded_by :address
   before_create :geocode
 
