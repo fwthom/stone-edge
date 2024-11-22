@@ -60,36 +60,34 @@
   <div id="stones" class="tab-content active">
 
 
-    <div class="test">
-
+    <div class="cards-stone-dashboard">
     <!-- Boucle pour afficher les pierres -->
-
      <% current_user.stones.each do |stone| %>
+     <%= link_to stone_path(stone), class: "card-link" do %>
 
-        <div style="width:300px; margin-bottom:150px;">
-          <div class="card">
-            <%= link_to stone_path(stone), class: "card-link" do %>
-              <div class="card-stone">
-                <div>
-                  <% if stone.photo.attached? %>
-                    <%= cl_image_tag stone.photo.key %>
-                  <% end %>
-                </div>
-                <div class="card-body">
-                  <div class="card-description">
-                    <p class="card-category"><%= stone.category.name %></p>
-                    <h5 class="card-name"><%= stone.name %></h5>
-                    <p class="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
-                  </div>
-                  <div class="price d-flex justify-content-around">
-                    <p class="card-daily-price"><%= stone.daily_price %>€/j</p>
-                  </div>
-                </div>
-              </div>
-            <% end %> <!-- Fermeture du link_to -->
+        <div class="card-stone">
+          <div>
+          <% if stone.photo.attached? %>
+            <%= cl_image_tag stone.photo.key %>
+          <% end %>
+          </div>
+          <div class="card-body">
+            <div class="card-description">
+              <p class="card-category"><%= stone.category.name %></p>
+              <h5 class="card-name"><%= stone.name %></h5>
+              <p class="card-backstory"><%= truncate(stone.backstory, length: 45, separator: ' ', omission: '...') %></p>
+            </div>
+            <div class="price">
+              <p class="card-daily-price"><%= stone.daily_price %>€ par jour</p>
+            </div>
           </div>
         </div>
-      <% end %> <!-- Fermeture de la boucle @stones -->
+    <% end %>
+     <% end %>
+    </div>
+
+
+
     </div>
   </div>
 </div>
