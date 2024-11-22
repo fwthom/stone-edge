@@ -40,14 +40,12 @@
               </div>
             </div>
           <% end %>
-        <h2>Réservation</h2>
-        <div class="cal-stone-show">
-        <div class="form-wrapper"
-            data-controller="booking"
-            data-booking-start-date-value="<%= params[:start_date] %>"
-            data-booking-end-date-value="<%= params[:end_date] %>"
-            data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
+
+
+
             <% if @stone.user == current_user %>
+            <h2>Modifier ma pierre : </h2>
+            <div class="cal-stone-show">
               <div>
                 <div id="DeleteEtid" style="width:30px">
                   <%= link_to stone_path(@stone), data: { turbo_method: :delete, turbo_confirm: 'Vous voulez vraiment supprimer cette pierre ?' } do %>
@@ -61,6 +59,13 @@
             <% end %>
 
         <% unless @stone.user == current_user %>
+        <h2>Réservation</h2>
+        <div class="cal-stone-show">
+        <div class="form-wrapper"
+            data-controller="booking"
+            data-booking-start-date-value="<%= params[:start_date] %>"
+            data-booking-end-date-value="<%= params[:end_date] %>"
+            data-booking-price-value="<%= Stone.find(params[:id]).daily_price %>">
           <div id="price">
             <h3 data-booking-target="priceShow"></h3>
           </div>
