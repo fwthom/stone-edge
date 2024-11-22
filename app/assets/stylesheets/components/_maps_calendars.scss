@@ -19,13 +19,83 @@
   top: 0;
 }
 
-#datepicker-container {
-  width: 100%;
-  max-width: 400px; /* Ajustez cette valeur selon vos besoins */
-  height: auto;
-  margin-top: 10px;
+
+.search-bar-container {
+  position: sticky;
+  top: 0;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content:center;
+
+  flex-wrap: wrap;
 }
 
-#datepicker-container:not(.d-none) {
-  max-height: 200px; /* ou ajustez selon la taille du contenu */
+/* Barre de recherche étendue */
+.search-input {
+  height: 40px;
+  width:400px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 16px;
+}
+
+/* Boutons arrondis */
+.search-button, .calendar-button, .category-select {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.search-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.calendar-button {
+  background-color: #6c757d;
+  color: white;
+
+}
+
+.category-select {
+  min-width: 150px;
+}
+
+/* Hover effects */
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.calendar-button:hover {
+  background-color: #5a6268;
+}
+
+/* Conteneur du calendrier masqué par défaut */
+.datepicker-container.hidden {
+  display: none;
+}
+
+/* Classe pour afficher le calendrier (gérée par Stimulus) */
+.datepicker-container {
+  display: block;
+  background: #29527b;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Champ de date masqué */
+.hidden {
+  display: none;
 }

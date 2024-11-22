@@ -23,7 +23,7 @@ export default class extends Controller {
   }
 
   toggleCalendar() {
-    this.datepickerContainerTarget.classList.toggle("d-none") 
+    this.datepickerContainerTarget.classList.toggle("hidden") 
   }
 
 
