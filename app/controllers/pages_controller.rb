@@ -34,7 +34,7 @@ class PagesController < ApplicationController
   end
 
   def profile
-    @user = User.find_by(id: params[:id]) || User.find_by(username: params[:id])
+    @user = User.find_by(id: params[:id])
 
     if @user
       @stones = @user.stones
