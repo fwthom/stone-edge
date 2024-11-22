@@ -2,18 +2,18 @@ class StonesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     search
-    set_markers
+    set_markers(@stones)
   end
 
   def search
     @stones = Stone.all
     if params[:query].present? || params[:start_date].present? || params[:end_date].present?
       @stones = Stone.search_by_name_backstory_personnality(params[:query])
-      
+
       if params[:start_date].present?
         @stones = Stone.joins(:bookings).where('bookings.start_date >= ?', "#{params[:start_date]}")
       end
-    
+
       if params[:end_date].present?
         @stones = Stone.joins(:bookings).where('bookings.end_date <= ?', params[:end_date])
       end
@@ -29,8 +29,8 @@ class StonesController < ApplicationController
         from: booking.start_date,
         to:   booking.end_date
       }
-    set_marker
     end
+    set_marker(@stone)
   end
 
   def new
@@ -75,8 +75,8 @@ class StonesController < ApplicationController
     params.require(:stone).permit(:name, :size, :condition, :backstory, :daily_price, :personnality_traits, :photo, :category_id)
   end
 
-  def set_markers
-    @markers = @stones.geocoded.map do |stone|
+  def set_markers(stones)
+    @markers = stones.geocoded.map do |stone|
       {
         lat: stone.latitude,
         lng: stone.longitude
@@ -84,14 +84,15 @@ class StonesController < ApplicationController
     end
   end
 
-  def set_marker
-    if @stone.latitude != nil && @stone.longitude != nil 
-      @marker =
+  def set_marker(stone)
+    if stone.latitude != nil && stone.longitude != nil
+      @marker =[
         {
-          lat: @stone.latitude,
-          lng: @stone.longitude
+          lat: stone.latitude,
+          lng: stone.longitude
         }
-    else 
+      ]
+    else
       @marker = nil
     end
   end
