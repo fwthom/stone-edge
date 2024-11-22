@@ -41,3 +41,6 @@
     </div>
   </div>
 </div>
+<div class="back-results" style="<%= 'display: none;' if controller_name == 'pages' && action_name == 'home' %>">
+  <%= link_to "<< Back", :back %>
+</div>
