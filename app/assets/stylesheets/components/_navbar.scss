@@ -51,3 +51,9 @@
 .navbar:not(.navbar-visible) {
   top: -100px;
 }
+
+.dropdown-item-custom { 
+  font-family: $body-font;
+  color: black;
+  font-size: 12px;
+}

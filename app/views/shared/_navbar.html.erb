@@ -22,12 +22,14 @@
 
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
              <%= link_to "/dashboard", class: "dropdown-item" do %>
-              <i class="fa-solid fa-gauge"></i> Dashboard
+              <p class="dropdown-item-custom"><i class="fa-solid fa-gauge"></i> Dashboard</p>
               <% end %>
              <%= link_to profile_page_path(id: current_user.id), class: "dropdown-item" do %>
-              <i class="fa-solid fa-user"></i> Mon profil
+              <p class="dropdown-item-custom"><i class="fa-solid fa-user"></i> Mon profil</p>
               <% end %>
-             <%= link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+             <%= link_to  destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
+             <p class="dropdown-item-custom"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</p>
+             <% end %>
             </div>
           </li>
         <% else %>
