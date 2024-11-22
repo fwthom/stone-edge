@@ -1,7 +1,7 @@
 <div class="search-bar-container" data-controller="datepicker">
   <div class="d-none" data-datepicker-target="dateForm" data-bookings="<%= [].to_json %>"></div>
 
-  <%= form_with url: stones_path, method: :get, local: true do |f| %>
+  <%= form_with url: stones_path, class:'search-bar-content', method: :get, local: true do |f| %>
       <!-- Barre de recherche -->
         <%= text_field_tag :query, 
               params[:query], 
