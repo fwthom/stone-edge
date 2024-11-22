@@ -54,6 +54,20 @@ image_urls = [
   "https://media.cdnws.com/_i/19988/12262/3189/64/terahertz-1.jpeg",
 ]
 
+backstories = [
+  "J’ai trouvé Maurice au bord de la Loire. Il a bloqué ma roue de vélo, mais depuis, on est inséparables. Il m’aide à caler mes meubles et parfois je lui raconte mes soucis. Il écoute bien, même s'il reste... de marbre.",
+  "Elle vient d’une crêperie bretonne où elle tenait la porte arrière. Quand je l’ai adoptée, elle m’a promis de rester discrète. Et elle tient parole : pas un mot depuis 3 ans, mais son aura est apaisante.",
+  "Roland a survécu à un barbecue raté où il était supposé tenir la grille. Il en porte encore les traces de charbon, mais il en est fier. On l’appelle maintenant ‘le vétéran’ dans ma bande de potes.",
+  "Lucette, polie par des siècles de vagues, est arrivée dans ma vie après un ricochet mémorable. Maintenant, elle refuse de se mouiller et préfère trôner sur mon étagère. Diva, mais adorable.",
+  "Je l’ai trouvé bosselé dans mon jardin après une tempête. Basile a peut-être des défauts, mais il est parfait pour caler ma porte les jours de vent. Je lui dis souvent : ‘Tu es mon roc!’",
+  "Simone, je l’ai adoptée après une randonnée. Elle n’a pas dit un mot pendant 20 km, mais elle a tenu mon sac comme un pro. Maintenant, elle repose, fière, sur ma cheminée.",
+  "Gaston était un caillou de plage jusqu’à ce que je glisse dessus en maillot de bain. Depuis, il s’est excusé et ne bouge plus. Une vraie histoire de pardon et d’amitié.",
+  "Pierrot a été abandonné par son ancien propriétaire au bord d’un ruisseau. Il m’a raconté ça en silence le jour où je l’ai ramassé. Maintenant, il fait partie de la famille, toujours un peu mélancolique.",
+  "Claudette était la préférée des enfants du parc, jusqu’à ce qu’ils la laissent dans un bac à sable. Quand je l’ai recueillie, elle m’a remercié avec son calme légendaire. Depuis, c’est méditation tous les jours.",
+  "Victor a voyagé dans ma poche pendant tout un tour d’Europe. Il ne se plaint jamais, sauf quand il y a trop de sable. Il prétend avoir vu les Alpes, mais bon… il exagère parfois."
+]
+
+
 # Seed data for stones
 stones_data = [
   {
@@ -397,7 +411,7 @@ stones_data.each do |stone_data|
   # Create the stone record
   stone = Stone.create!(
     name: stone_data[:name],
-    backstory: stone_data[:backstory],
+    backstory: backstories.sample,
     daily_price: stone_data[:daily_price],
     personnality_traits: stone_data[:personnality_traits],
     condition: stone_data[:condition],

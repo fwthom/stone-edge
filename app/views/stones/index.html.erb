@@ -1,7 +1,7 @@
 <div class="container">
 <%= render 'search' %>
 
-<div class="d-flex">
+<div class="results-container">
   <div class="cards-stone">
     <% @stones.each do |stone| %>
 <%= link_to stone_path(stone), class: "card-link" do %>
@@ -15,13 +15,12 @@
             <div class="card-description">
               <p class="card-category"><%= stone.category.name %></p>
               <h5 class="card-name"><%= stone.name %></h5>
-              <p class="card-backstory"><%= truncate(stone.backstory, length: 25, separator: ' ', omission: '...') %></p>
+              <p class="card-backstory"><%= truncate(stone.backstory, length: 45, separator: ' ', omission: '...') %></p>
             </div>
             <div class="price">
               <p class="card-daily-price"><%= stone.daily_price %>€ par jour</p>
             </div>
           </div>
-
         </div>
       <% end %>
     <% end %>

@@ -1,7 +1,3 @@
-<div class=back-results>
-  <%= link_to "< Retourner à la recherche", stones_path %>
-</div>
-
 <div class="container">
 
 
@@ -16,16 +12,32 @@
             <%= cl_image_tag "development/17n6kwpi22xr4dlapk6w6t56qudu", class: "stone-show-card-img", alt: "Image par défaut" %>
           <% end %>
         </div>
+
+          <div>
+            <% if @stone.user == current_user %>
+              <div class="d-flex align-items-center justify-content-end"> <!-- justify-content-end pour aligner à droite -->
+                <div class="icon-wrapper" style="margin-right: 16px;"> <!-- marge pour espacer les icônes -->
+                  <%= link_to edit_stone_path(@stone) do %>
+                    <i class="fa-regular fa-pen-to-square" style="width: 30px; color: black;"></i>
+                  <% end %>
+                </div>
+                <div class="icon-wrapper">
+                  <%= link_to stone_path(@stone), data: { turbo_method: :delete, turbo_confirm: 'Vous voulez vraiment supprimer cette pierre ?' } do %>
+                    <i class="fa-solid fa-xmark" style="width: 30px; color: black;"></i>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
           <div>
             <h1>Découvrez <strong><%= @stone.name %></strong></h1>
-            <h4><%= @stone.category.name %></h4>
-            <p><%= @stone.category.properties %></p>
-            <p><%= @stone.backstory %></p>
+            <h4><%= @stone.category.name %> : <%= @stone.category.properties %> </h4>
+            <p>Son histoire : <%= @stone.backstory %></p>
           </div>
         </div>
         <div class="show-mail">
-          <h2>Rencontrez le propriétaire :</h2>
-          <p><%= @stone.user.email %></p>
+          <h2>L'heureux propriétaire</h2>
+          <p><%= @stone.user.first_name %> possède <%= @stone.user.stones.count %> pierres</p>
       </div>
     </div>
 
@@ -41,20 +53,21 @@
             </div>
           <% end %>
 
-
-
             <% if @stone.user == current_user %>
-            <h2>Modifier ma pierre : </h2>
-            <div class="cal-stone-show">
               <div>
-                <div id="DeleteEtid" style="width:30px">
-                  <%= link_to stone_path(@stone), data: { turbo_method: :delete, turbo_confirm: 'Vous voulez vraiment supprimer cette pierre ?' } do %>
-                  <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732102251/bin-svgrepo-com_njcdpx.jpg?_s=public-apps", class: "bin", alt: "Image par défaut", style:"width:30px" %>
-                </div>
-                <% end %>
-                <%= link_to edit_stone_path(@stone) do %>
-                  <%= image_tag "https://res.cloudinary.com/ddai42zl7/image/upload/fl_preserve_transparency/v1732104217/pencil-svgrepo-com_fhlba0.jpg?_s=public-apps", class: "bin", alt: "Image par défaut", style:"width:30px" %>
-                <% end  %>
+                <h2>Bookings de cette pierre : </h2>
+                <ul class="list-group">
+                  <% @stone.bookings.each do |booking| %>
+                    <li class="d-flex justify-content-between align-items-center py-2"> <!-- Ajout de padding vertical -->
+                      <%= link_to dashboard_path, class: "text-decoration-none d-flex justify-content-between align-items-center w-100" do %>
+                        <div class="d-flex flex-column text-dark"> <!-- Conteneur pour le texte -->
+                          <p class="mb-1">Réservation par <%= booking.user.first_name %> du <%= booking.start_date %> au <%= booking.end_date %></p>
+                        </div>
+                        <p class="status-booking mb-0 text-dark" style="margin-left: 16px;"><%= booking.status %></p> <!-- Espacement horizontal -->
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
               </div>
             <% end %>
 
