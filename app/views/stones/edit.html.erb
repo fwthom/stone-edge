@@ -1,5 +1,5 @@
- <div class="container" style="width:400px;">
-
+ <div class="container">
+  <div class="form-container">
         <h1>Modifier votre pierre</h1>
 
 
@@ -18,14 +18,12 @@
             <% if @stone.photo.attached? %>
               <p>Photo actuelle :</p>
               <%= cl_image_tag @stone.photo.key, height: 100 %>
-            <%= f.submit "Enregistrer les modifications", class: "my-custom-button btn btn-warning" %>
+            <%= f.submit "Enregistrer les modifications", class: "rounded-button primary" %>
             <% end %>
         <%# If end %>
 
-      </div>
+
       <%# End du form %>
             <% end %>
-        </div>
-      </div>
-    </div>
   </div>
+</div>
