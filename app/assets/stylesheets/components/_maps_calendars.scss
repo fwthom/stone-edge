@@ -24,7 +24,9 @@
   position: sticky;
   top: 0;
   background: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px #fff;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.171);
   padding: 10px 20px;
   z-index: 1000;
 
@@ -38,18 +40,20 @@
 
 /* Barre de recherche étendue */
 .search-input {
-  height: 40px;
+  margin: 8px;
+  padding: 10px 20px;
   width:400px;
   padding: 10px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid $accent;
   border-radius: 50px;
   font-size: 16px;
 }
 
 /* Boutons arrondis */
 .search-button, .calendar-button, .category-select {
+  margin: 8px;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid $accent;
   border-radius: 50px;
   font-size: 16px;
   cursor: pointer;
@@ -57,27 +61,29 @@
 }
 
 .search-button {
-  background-color: #007bff;
+  background-color: $accent;
   color: white;
 }
 
 .calendar-button {
-  background-color: #6c757d;
-  color: white;
+  background-color: $white;
+  color: $accent;
 
 }
 
 .category-select {
   min-width: 150px;
+  background-color: $white;
+  color: $accent;
 }
 
 /* Hover effects */
 .search-button:hover {
-  background-color: #0056b3;
+  background-color: $accent-hover;
 }
 
 .calendar-button:hover {
-  background-color: #5a6268;
+  background-color: $light-gray;
 }
 
 /* Conteneur du calendrier masqué par défaut */

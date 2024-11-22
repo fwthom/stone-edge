@@ -1,5 +1,5 @@
 <div class="search-bar-container" data-controller="datepicker">
-  <div data-datepicker-target="dateForm" data-bookings="<%= [].to_json %>"></div>
+  <div class="d-none" data-datepicker-target="dateForm" data-bookings="<%= [].to_json %>"></div>
 
   <%= form_with url: stones_path, method: :get, local: true do |f| %>
       <!-- Barre de recherche -->
@@ -26,6 +26,7 @@
          data-datepicker-target="datepickerContainer">
 
         <!-- Champ Date de début -->
+        <%= f.label :start_date, class: "d-none", for: "range_start" %>
         <%= f.text_field :start_date, 
                 required: false, 
                 id: "range_start", 
@@ -33,11 +34,11 @@
                 data: { datepicker_target: "start", booking_target: "startDate" } %>
         
         <!-- Champ Date de fin -->
-        <%= f.label :end_date, class: "hidden", for: "range_end" %>
+        <%= f.label :end_date, class: "d-none", for: "range_end" %>
         <%= f.text_field :end_date, 
                         required: false, 
                         id: "range_end", 
-                        class: "hidden", 
+                        class: "d-none", 
                         data: { datepicker_target: "end", booking_target: "endDate" } %>
       </div>
 
