@@ -11,7 +11,7 @@
         </div>
       <% end %>
       <h2 class="mt-3"><%= @user.username || "User Profile" %></h2>
-      <%= link_to "Edit password", edit_user_registration_path, class: "btn btn-primary mt-3" %>
+      <%= link_to "Edit password", edit_user_registration_path, class: "rounded-button secondary" %>
     </div>
 
     <div class="col-md-8">
@@ -21,7 +21,7 @@
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
               <h4 class="card-title">Profil de <%= @user.first_name %></h4>
-              <button id="toggle-edit" class="btn btn-secondary btn-sm">Edit</button>
+              <button id="toggle-edit" class="rounded-button primary">Edit</button>
             </div>
             <hr>
             <p><strong>First Name:</strong> <%= @user.first_name %></p>
@@ -42,7 +42,7 @@
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
               <h4 class="card-title">Edit Profile</h4>
-              <button type="button" id="cancel-edit" class="btn btn-secondary btn-sm">Cancel</button>
+              <button type="button" id="cancel-edit" class="rounded-button secondary">Cancel</button>
             </div>
             <hr>
             <div class="mb-3">
@@ -70,7 +70,7 @@
               <%= f.input :bio, label: "Bio", as: :text, input_html: { rows: 3 }, placeholder: "Write something about yourself" %>
             </div>
             <div>
-              <%= f.button :submit, "Save Changes", class: "btn btn-success" %>
+              <%= f.button :submit, "Save Changes", class: "rounded-button primary" %>
             </div>
           </div>
         <% end %>
