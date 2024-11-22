@@ -31,14 +31,13 @@
           </div>
           <div>
             <h1>Découvrez <strong><%= @stone.name %></strong></h1>
-            <h4><%= @stone.category.name %></h4>
-            <p><%= @stone.category.properties %></p>
-            <p><%= @stone.backstory %></p>
+            <h4><%= @stone.category.name %> : <%= @stone.category.properties %> </h4>
+            <p>Son histoire : <%= @stone.backstory %></p>
           </div>
         </div>
         <div class="show-mail">
-          <h2>Rencontrez le propriétaire :</h2>
-          <p><%= @stone.user.email %></p>
+          <h2>L'heureux propriétaire</h2>
+          <p><%= @stone.user.first_name %> possède <%= @stone.user.stones.count %> pierres</p>
       </div>
     </div>
 
