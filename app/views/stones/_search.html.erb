@@ -1,28 +1,49 @@
-<div class="row", data-controller="datepicker">
-  <div class="col-sm-8 my-3">
-    <%= form_with url: stones_path, method: :get, local: true do |f| %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Entrez un mot clé" %>
-  </div>
-  <div class="col-sm-4 my-3">
+<div class="search-bar-container" data-controller="datepicker">
+  <div class="d-none" data-datepicker-target="dateForm" data-bookings="<%= [].to_json %>"></div>
+
+  <%= form_with url: stones_path, class:'search-bar-content', method: :get, local: true do |f| %>
+      <!-- Barre de recherche -->
+        <%= text_field_tag :query, 
+              params[:query], 
+              placeholder: "Entrez un mot clé",
+              class: "search-input"%>
+
+      <%= f.select :category_id, 
+          options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
+          { include_blank: "Toutes les catégories" }, 
+          class: "category-select" %>
+      
+        <!-- Bouton pour afficher/masquer le calendrier -->
+        <button type="button", 
+                class="calendar-button",
+                data-action="click->datepicker#toggleCalendar">
+          📅 Choisir une date
+        </button>
+
+      <!-- Champs de date masqués -->
+      <div id="datepicker-container" 
+         class="datepicker-container hidden"
+         data-datepicker-target="datepickerContainer">
+
+        <!-- Champ Date de début -->
+        <%= f.label :start_date, class: "d-none", for: "range_start" %>
         <%= f.text_field :start_date, 
                 required: false, 
                 id: "range_start", 
                 class: "d-none", 
                 data: { datepicker_target: "start", booking_target: "startDate" } %>
+        
+        <!-- Champ Date de fin -->
         <%= f.label :end_date, class: "d-none", for: "range_end" %>
         <%= f.text_field :end_date, 
                         required: false, 
                         id: "range_end", 
                         class: "d-none", 
                         data: { datepicker_target: "end", booking_target: "endDate" } %>
-    </div>
-        <%= f.submit "Rechercher", class: "btn btn-primary" %>
+      </div>
+
+    <!-- Bouton rechercher -->
+      <button type="submit" class="search-button">Rechercher</button>
     <% end %>
-    <div data-datepicker-target="dateForm"
-              data-bookings="<%= [].to_json %>">
-    </div>
-</div>
-  
+  </div>
+

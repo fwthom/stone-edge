@@ -7,7 +7,8 @@ class StonesController < ApplicationController
 
   def search
     @stones = Stone.all
-    if params[:query].present? || params[:start_date].present? || params[:end_date].present?
+    @stones = @stones.where(category_id: params[:category_id]) if params[:category_id].present?
+    if params[:query].present? || params[:start_date].present? || params[:end_date].present? 
       @stones = Stone.search_by_name_backstory_personnality(params[:query])
 
       if params[:start_date].present?
@@ -17,6 +18,7 @@ class StonesController < ApplicationController
       if params[:end_date].present?
         @stones = Stone.joins(:bookings).where('bookings.end_date <= ?', params[:end_date])
       end
+
     end
   end
 
