@@ -1,0 +1,45 @@
+.category-select {
+  height: 42px;
+  margin: 8px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 16px;
+  min-width: 150px;
+  background-color: $white;
+  color: $accent;
+  border: 1px solid $accent;
+
+  &:hover {
+    color: $accent-hover;
+    border: 1px solid $accent-hover;
+  }
+}
+
+.rounded-button {
+  height: 42px;
+  margin: 8px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: $accent;
+  border: 1px solid $accent;
+  color: white;
+  &:hover {
+    background-color: $accent-hover;
+  }
+}
+
+.secondary {
+  background-color: $white;
+  color: $accent;
+  border: 1px solid $accent;
+  &:hover {
+    color: $accent-hover;
+    border: 1px solid $accent-hover;
+  }
+}
