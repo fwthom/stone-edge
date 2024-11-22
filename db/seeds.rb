@@ -1,25 +1,15 @@
-require 'open-uri'
+require "open-uri"
 
-def attach_photo(stone, public_id)
-  stone.photo.attach(
-    io: URI.open(Cloudinary::Utils.cloudinary_url(public_id)),
-    filename: "#{public_id.split('/').last}.jpg", # Generate a filename from the public_id
-    content_type: "image/jpeg"
-  )
-end
-
-# Supprimer les anciens enregistrements
 Stone.destroy_all
 User.destroy_all
 Category.destroy_all
 
-# Création de nouveaux utilisateurs
 puts "Création des users"
 users = User.create!([
-  { email: "thomas@lewagon.org", password: "password", username: "Thomas", bio: "lorem", city: "Lille", country: "France"},
-  { email: "camille@lewagon.org", password: "password", username: "Camille", bio: "lorem", city: "Paris", country: "France"},
-  { email: "jean@lewagon.org", password: "password", username: "Jean", bio: "lorem", city: "Marseille", country: "France"},
-  { email: "vincent@lewagon.org", password: "password", username: "Vincent", bio: "lorem", city: "Strasbourg", country: "France"},
+  { email: "thomas@lewagon.org", password: "password", username: "Thomas", bio: "lorem", city: "Lille", country: "France", first_name: "Thomas"},
+  { email: "camille@lewagon.org", password: "password", username: "Camille", bio: "lorem", city: "Paris", country: "France", first_name: "Camille"},
+  { email: "jean@lewagon.org", password: "password", username: "Jean", bio: "lorem", city: "Marseille", country: "France", first_name: "Jean le Coquinou"},
+  { email: "vincent@lewagon.org", password: "password", username: "Vincent", bio: "lorem", city: "Strasbourg", country: "France", first_name: "Vincent"},
 ])
 puts "Users Créés"
 
@@ -34,13 +24,35 @@ categories = Category.create!([
   { name: "Pierre DJ", properties: "Joue de la musique disco dès qu'il y a de la lumière", image_url: "pierre-dj.png" },
   { name: "Pierre ninja", properties: "Se cache dès qu'on essaie de la trouver", image_url: "pierre-ninja.png" },
 ])
-puts "Catégories Créées"
-# Création de nouvelles pierres associées aux utilisateurs
-puts "Création des stones"
-DEFAULT_IMAGE_URL = Cloudinary::Utils.cloudinary_url("development/17n6kwpi22xr4dlapk6w6t56qudu")
 
-stones = Stone.create!([
-  # Category: Pierre magique
+# Array of example image URLs
+image_urls = [
+  "https://media.cdnws.com/_i/19988/1367/3204/70/agate.jpeg",
+  "https://media.cdnws.com/_i/19988/9417/3418/21/aigue-marine-2.jpeg",
+  "https://media.cdnws.com/_i/19988/9538/7/38/amazonite-4.jpeg",
+  "https://media.cdnws.com/_i/19988/1371/4000/74/ametrine.jpeg",
+  "https://media.cdnws.com/_i/19988/9420/3558/24/bois-fossilise-2.jpeg",
+  "https://media.cdnws.com/_i/19988/1376/2037/79/calicite-a.jpeg",
+  "https://media.cdnws.com/_i/19988/12274/3539/76/jade-nephrite.jpeg",
+  "https://media.cdnws.com/_i/19988/12365/1218/68/quartz-rose-aa.jpeg",
+  "https://media.cdnws.com/_i/19988/1409/3237/13/zoisite.jpeg",
+  "https://media.cdnws.com/_i/19988/9666/1141/67/shungite-1.jpeg",
+  "https://media.cdnws.com/_i/19988/12285/2312/87/agate-de-feux.jpeg",
+  "https://media.cdnws.com/_i/19988/11493/1738/97/agate-fleur-de-cerisier.jpeg",
+  "https://media.cdnws.com/_i/19988/11494/1501/98/agate-indienne.jpeg",
+  "https://media.cdnws.com/_i/19988/12289/3419/91/amethyste-bresil.jpeg",
+  "https://media.cdnws.com/_i/19988/12271/1962/73/agate-fleur-de-cerisier-verte.jpeg",
+  "https://media.cdnws.com/_i/19988/12265/2928/67/apatite-2.jpeg",
+  "https://media.cdnws.com/_i/19988/11491/2194/95/corail-fossil.jpeg",
+  "https://media.cdnws.com/_i/19988/11489/2576/93/cacedoine-ab.jpeg",
+  "https://media.cdnws.com/_i/19988/11488/7/92/grenat-almandin-brut.jpeg",
+  "https://media.cdnws.com/_i/19988/11486/432/90/quartz-citron.jpeg",
+  "https://media.cdnws.com/_i/19988/12278/1156/80/quartz-fraise-verte.jpeg",
+  "https://media.cdnws.com/_i/19988/12262/3189/64/terahertz-1.jpeg",
+]
+
+# Seed data for stones
+stones_data = [
   {
     name: "Rubis",
     backstory: "Un joyau d’un autre monde trouvé au fond d’un volcan en colère.",
@@ -374,9 +386,28 @@ stones = Stone.create!([
     user: users[3],
     category: categories[7]
   }
-]).each do |stone|
-  attach_photo(stone, "development/17n6kwpi22xr4dlapk6w6t56qudu")
+  # Add more stones as needed...
+]
+
+# Iterate over stones_data to create records and attach random images
+stones_data.each do |stone_data|
+  # Create the stone record
+  stone = Stone.create!(
+    name: stone_data[:name],
+    backstory: stone_data[:backstory],
+    daily_price: stone_data[:daily_price],
+    personnality_traits: stone_data[:personnality_traits],
+    condition: stone_data[:condition],
+    size: stone_data[:size],
+    user: stone_data[:user],
+    category: stone_data[:category]
+  )
+  random_image_url = image_urls.sample
+
+  file = URI.open(random_image_url)
+  stone.photo.attach(io: file, filename: "#{stone.name.downcase.gsub(' ', '_')}.jpg", content_type: "image/jpeg")
+
+  puts "Created stone '#{stone.name}' with a random image"
 end
 
-
-puts "Seed completed: #{User.count} users and #{Stone.count} stones created."
+puts "Seeding completed!" 
